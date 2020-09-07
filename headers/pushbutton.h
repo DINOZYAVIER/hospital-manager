@@ -1,7 +1,7 @@
 #ifndef PUSHBUTTON_H
 #define PUSHBUTTON_H
 
-#include "tablewindow.h"
+#include "../headers/tablewindow.h"
 #include <QPushButton>
 #include <QWidget>
 

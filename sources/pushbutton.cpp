@@ -1,4 +1,4 @@
-#include "pushbutton.h"
+#include "../headers/pushbutton.h"
 
 PushButton::PushButton(QWidget *parent, TableWindow *t, int mode)
     : QPushButton(parent), t(t)

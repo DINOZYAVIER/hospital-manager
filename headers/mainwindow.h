@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include "tablewindow.h"
+#include "../headers/tablewindow.h"
 
 
 QT_BEGIN_NAMESPACE

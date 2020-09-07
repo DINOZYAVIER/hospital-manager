@@ -1,4 +1,4 @@
-#include "tablewindow.h"
+#include "../headers/tablewindow.h"
 
 TableWindow::TableWindow(QWidget *parent)
     : QTableView(parent)
@@ -8,7 +8,7 @@ TableWindow::TableWindow(QWidget *parent)
 
 TableWindow::~TableWindow()
 {
-
+    delete model;
 }
 
 void TableWindow::ModelLoad()

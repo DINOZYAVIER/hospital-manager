@@ -1,6 +1,6 @@
-#include "mainwindow.h"
-#include "tablewindow.h"
-#include "pushbutton.h"
+#include "../headers/mainwindow.h"
+#include "../headers/tablewindow.h"
+#include "../headers/pushbutton.h"
 
 #include <QApplication>
 
