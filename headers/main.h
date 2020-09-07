@@ -5,5 +5,6 @@
 #include <QSqlDatabase>
 #include <QHeaderView>
 #include <QDebug>
+#include <QItemDelegate>
 
 #endif // MAIN_H

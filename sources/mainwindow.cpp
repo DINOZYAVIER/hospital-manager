@@ -6,21 +6,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug() << QCoreApplication::applicationDirPath() + "/my_db.db";
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/my_db.db");
+    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/patients_db.db");
     db.open();
 
     model = new QSqlTableModel(this);
     model->setTable("Patients");
     model->select();
-    ui->tableView->setModel(model);
+    ui->patientTable->setModel(model);
 
-    qDebug() << model_index[0];
     this->clmn_cnt = model->columnCount();
     this->row_cnt = model->rowCount();
 
-    tableHeader = ui->tableView->horizontalHeader();
+    tableHeader = ui->patientTable->horizontalHeader();
     connect(tableHeader, SIGNAL(sectionClicked ( int ) ),
         this, SLOT(sortColumn ( int ) ));
 }
@@ -33,25 +31,30 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAdd_triggered()
 {
-    this->row_cnt = model->rowCount();
-    model->insertRow(row_cnt++);
+    model->insertRow(row_cnt);
+    QModelIndex index = model->index(row_cnt, 0);
+    if( !model->setData(index, row_cnt + 1) )
+        qDebug() << "Did not manage to add new patient, as previous record is empty";
+    else
+        row_cnt++;
     qDebug() << row_cnt;
 }
 
 void MainWindow::on_actionRemove_triggered()
 {
     if( row_cnt != 1)
-        model->removeRow(row_cnt-- - 1);
+        model->removeRow(row_cnt - 1);
+    this->row_cnt--;
     qDebug() << row_cnt;
-}
-
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
-{
-
 }
 
 void MainWindow::sortColumn(int logicalindex)
 {
     qDebug() << logicalindex;
     model->sort(logicalindex, Qt::AscendingOrder);
+}
+
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+
 }

@@ -29,7 +29,6 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     QSqlTableModel *model;
-    QModelIndex model_index[4];
     QHeaderView* tableHeader;
     int row_cnt = 0;
     int clmn_cnt = 0;
