@@ -19,7 +19,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void AddTable(TableWindow *t);
 
 private slots:
     void on_actionAdd_triggered();
@@ -31,5 +30,7 @@ private:
     TableWindow *t;
     QSqlDatabase db;
     QSqlTableModel *model;
+    int row_cnt = 0;
+    int clmn_cnt = 0;
 };
 #endif // MAINWINDOW_H
