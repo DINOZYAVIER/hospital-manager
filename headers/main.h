@@ -6,5 +6,6 @@
 #include <QHeaderView>
 #include <QDebug>
 #include <QItemDelegate>
+#include <QTranslator>
 
 #endif // MAIN_H
