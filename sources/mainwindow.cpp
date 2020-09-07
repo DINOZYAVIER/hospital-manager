@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    qDebug() << QCoreApplication::applicationDirPath() + "/my_db.db";
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/Users/dinozyavier/hospital/my_db.db");
+    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/my_db.db");
     db.open();
 
     model = new QSqlTableModel(this);

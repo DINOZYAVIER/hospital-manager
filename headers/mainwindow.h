@@ -1,11 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "../headers/main.h"
 #include <QMainWindow>
-#include <QSqlTableModel>
-#include <QSqlDatabase>
-#include <QDebug>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

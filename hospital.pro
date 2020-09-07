@@ -1,4 +1,4 @@
-QT       += core gui sql widgets
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,9 +13,8 @@ SOURCES += \
     sources/mainwindow.cpp
 
 HEADERS += \
+    headers/main.h \
     headers/mainwindow.h \
-    mainwindow.h \
-    pushbutton.h
 
 FORMS += \
     forms/mainwindow.ui
@@ -28,3 +27,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     ../Downloads/my_db.db \
     my_db.db
+
+PRECOMPILED_HEADER = headers/main.h
