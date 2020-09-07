@@ -6,23 +6,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::handleAddButton()
-{
-    t->AddPatient();
-    qDebug() << "hello there";
-}
-
-void MainWindow::handleDeleteButton()
-{
-    t->DeletePatient();
-    qDebug() << "hello there everyone";
 }
 
 void MainWindow::AddTable(TableWindow *t)
@@ -31,3 +20,14 @@ void MainWindow::AddTable(TableWindow *t)
 }
 
 
+
+void MainWindow::on_actionAdd_triggered()
+{
+    t->AddPatient();
+    qDebug() << "hello there";
+}
+
+void MainWindow::on_actionRemove_triggered()
+{
+    t->DeletePatient();
+}

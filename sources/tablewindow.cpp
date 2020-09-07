@@ -41,7 +41,7 @@ void TableWindow::ModelLoad()
 
 
         this->setFixedSize(x, y);
-        qDebug() << this->isColumnHidden(1) << this->isRowHidden(1) << model->columnCount() << model->rowCount();
+        //qDebug() << this->isColumnHidden(1) << this->isRowHidden(1) << model->columnCount() << model->rowCount();
     }
 }
 

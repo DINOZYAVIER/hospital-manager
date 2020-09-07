@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlTableModel>
+#include <QSqlDatabase>
 #include <QDebug>
 #include "../headers/tablewindow.h"
 
@@ -20,11 +22,14 @@ public:
     void AddTable(TableWindow *t);
 
 private slots:
-    void handleAddButton();
-    void handleDeleteButton();
+    void on_actionAdd_triggered();
+
+    void on_actionRemove_triggered();
 
 private:
     Ui::MainWindow *ui;
     TableWindow *t;
+    QSqlDatabase db;
+    QSqlTableModel *model;
 };
 #endif // MAINWINDOW_H
