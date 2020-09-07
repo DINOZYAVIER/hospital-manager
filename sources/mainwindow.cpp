@@ -29,6 +29,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAdd_triggered()
 {
+    this->row_cnt = model->rowCount();
     model->insertRow(row_cnt++);
     qDebug() << row_cnt;
 }
@@ -37,4 +38,5 @@ void MainWindow::on_actionRemove_triggered()
 {
     if( row_cnt != 1)
         model->removeRow(row_cnt-- - 1);
+    qDebug() << row_cnt;
 }

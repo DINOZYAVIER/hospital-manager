@@ -1,5 +1,4 @@
 #include "../headers/mainwindow.h"
-#include "../headers/tablewindow.h"
 
 #include <QApplication>
 

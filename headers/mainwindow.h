@@ -5,7 +5,6 @@
 #include <QSqlTableModel>
 #include <QSqlDatabase>
 #include <QDebug>
-#include "../headers/tablewindow.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +26,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    TableWindow *t;
     QSqlDatabase db;
     QSqlTableModel *model;
     int row_cnt = 0;
