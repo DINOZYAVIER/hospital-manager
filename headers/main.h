@@ -3,6 +3,7 @@
 
 #include <QSqlTableModel>
 #include <QSqlDatabase>
+#include <QHeaderView>
 #include <QDebug>
 
 #endif // MAIN_H

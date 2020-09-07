@@ -16,9 +16,13 @@ MainWindow::MainWindow(QWidget *parent)
     model->select();
     ui->tableView->setModel(model);
 
+    qDebug() << model_index[0];
     this->clmn_cnt = model->columnCount();
     this->row_cnt = model->rowCount();
 
+    tableHeader = ui->tableView->horizontalHeader();
+    connect(tableHeader, SIGNAL(sectionClicked ( int ) ),
+        this, SLOT(sortColumn ( int ) ));
 }
 
 MainWindow::~MainWindow()
@@ -39,4 +43,15 @@ void MainWindow::on_actionRemove_triggered()
     if( row_cnt != 1)
         model->removeRow(row_cnt-- - 1);
     qDebug() << row_cnt;
+}
+
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+
+}
+
+void MainWindow::sortColumn(int logicalindex)
+{
+    qDebug() << logicalindex;
+    model->sort(logicalindex, Qt::AscendingOrder);
 }
