@@ -29,6 +29,8 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     QSqlTableModel *model;
+    QSqlTableModel *recordsModel;
+    QSqlTableModel *radiographsModel;
     QHeaderView* tableHeader;
     int row_cnt = 0;
     int clmn_cnt = 0;

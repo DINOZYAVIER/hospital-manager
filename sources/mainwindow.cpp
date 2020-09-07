@@ -7,13 +7,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/patients_db.db");
+    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/my_db.db");
     db.open();
 
     model = new QSqlTableModel(this);
     model->setTable("Patients");
     model->select();
     ui->patientTable->setModel(model);
+
+    recordsModel = new QSqlTableModel(this);
+    recordsModel->setTable("ClinicalRecords");
+    recordsModel->select();
+    ui->recordTable->setModel(recordsModel);
+
+    radiographsModel = new QSqlTableModel(this);
+    radiographsModel->setTable("Radiographs");
+    radiographsModel->select();
+    ui->radiographTable->setModel(radiographsModel);
 
     this->clmn_cnt = model->columnCount();
     this->row_cnt = model->rowCount();

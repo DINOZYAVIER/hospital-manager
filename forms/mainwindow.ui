@@ -64,7 +64,7 @@
      <bool>false</bool>
     </attribute>
    </widget>
-   <widget class="QTableView" name="radiograpghTable">
+   <widget class="QTableView" name="radiographTable">
     <property name="geometry">
      <rect>
       <x>0</x>
