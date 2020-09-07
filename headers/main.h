@@ -7,5 +7,6 @@
 #include <QDebug>
 #include <QItemDelegate>
 #include <QTranslator>
+#include <QInputDialog>
 
 #endif // MAIN_H

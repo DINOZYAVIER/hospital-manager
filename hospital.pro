@@ -29,3 +29,6 @@ DISTFILES += \
     my_db.db
 
 PRECOMPILED_HEADER = headers/main.h
+
+RESOURCES += \
+    resources/translations.qrc
