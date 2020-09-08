@@ -1,31 +1,22 @@
-#include "../headers/mainwindow.h"
+#include "precompiled.h"
+#include "mainwindow.h"
 
-#include <QApplication>
-
-int main(int argc, char *argv[])
+int main( int argc, char *argv[] )
 {
-    QApplication a(argc, argv);
-    MainWindow *w = new MainWindow();
-    QTranslator* translator = new QTranslator;
+    QApplication app( argc, argv );
 
-    QStringList languages;
-    languages << "English" << "Russian";
-
-    QString lang = QInputDialog::getItem(NULL, "Select language", "Language", languages);
-
+    QTranslator translator;
+    QStringList languages { "English" , "Russian" };
+    QString lang = QInputDialog::getItem( NULL, "Select language", "Language", languages );
     if( lang == "Russian" )
     {
-        if( translator->load("/Users/dinozyavier/hospital/resources/russian.qm") )
+        if( translator.load(":/translations/hospital_ru.qm") )
             qDebug() << "Translation success!" ;
     }
+    app.installTranslator( &translator );
 
-    if( lang != "English" )
-        a.installTranslator(translator);
+    MainWindow mainWin;
+    mainWin.show();
 
-
-
-
-
-    w->show();
-    return a.exec();
+    return app.exec();
 }

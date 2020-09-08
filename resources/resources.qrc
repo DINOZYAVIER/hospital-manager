@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>translations/hospital_ru.qm</file>
+        <file>icons/add_patient.png</file>
+        <file>icons/remove_patient.png</file>
+    </qresource>
+</RCC>
