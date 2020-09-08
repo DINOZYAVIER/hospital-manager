@@ -9,11 +9,14 @@
 #include <QApplication>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
+#include <QSqlRecord>
+#include <QSqlField>
 #include <QHeaderView>
 #include <QDebug>
 #include <QItemDelegate>
 #include <QTranslator>
 #include <QInputDialog>
+#include <QDateTime>
 #endif // __cplusplus
 
 #endif // PRECOMPILED_H

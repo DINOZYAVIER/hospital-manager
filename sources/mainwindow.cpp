@@ -1,70 +1,71 @@
-#include "../headers/mainwindow.h"
+#include "precompiled.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow( QWidget *parent )
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , m_ui( new Ui::MainWindow )
 {
-    ui->setupUi(this);
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/my_db.db");
-    db.open();
+    m_ui->setupUi( this );
+    m_db = QSqlDatabase::addDatabase( "QSQLITE" );
+    m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
+    m_db.open();
 
-    model = new QSqlTableModel(this);
-    model->setTable("Patients");
-    model->select();
-    ui->patientTable->setModel(model);
+    m_patientsModel = new QSqlTableModel( this );
+    m_patientsModel->setTable( "Patients" );
+    m_patientsModel->select();
+    m_ui->patientTable->setModel( m_patientsModel );
 
-    recordsModel = new QSqlTableModel(this);
-    recordsModel->setTable("ClinicalRecords");
-    recordsModel->select();
-    ui->recordTable->setModel(recordsModel);
+    m_recordsModel = new QSqlTableModel( this );
+    m_recordsModel->setTable( "ClinicalRecords" );
+    m_recordsModel->select();
+    m_ui->recordTable->setModel( m_recordsModel );
 
-    radiographsModel = new QSqlTableModel(this);
-    radiographsModel->setTable("Radiographs");
-    radiographsModel->select();
-    ui->radiographTable->setModel(radiographsModel);
+    m_radiographsModel = new QSqlTableModel( this );
+    m_radiographsModel->setTable( "Radiographs" );
+    m_radiographsModel->select();
+    m_ui->radiographTable->setModel( m_radiographsModel );
 
-    this->clmn_cnt = model->columnCount();
-    this->row_cnt = model->rowCount();
+    connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
+    connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
 
-    tableHeader = ui->patientTable->horizontalHeader();
-    connect(tableHeader, SIGNAL(sectionClicked ( int ) ),
-        this, SLOT(sortColumn ( int ) ));
+    auto* header = m_ui->patientTable->horizontalHeader();
+    connect( header, &QHeaderView::sortIndicatorChanged, this, &MainWindow::sortPatients );
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
-    db.close();
+    delete m_ui;
+    m_db.close();
 }
 
-void MainWindow::on_actionAdd_triggered()
+void MainWindow::onAddPatient()
 {
-    model->insertRow(row_cnt);
-    QModelIndex index = model->index(row_cnt, 0);
-    if( !model->setData(index, row_cnt + 1) )
-        qDebug() << "Did not manage to add new patient, as previous record is empty";
-    else
-        row_cnt++;
-    qDebug() << row_cnt;
+    QSqlRecord record( m_patientsModel->record() );
+    record.setValue( 0, QVariant() );
+    record.setValue( 1, "" );
+    record.setValue( 2, QVariant( "01.01.1980" ) );
+    m_patientsModel->insertRecord( -1, record );
+    m_patientsModel->submitAll();
+    m_patientsModel->select();
+    qDebug() << "Added patient with ID:" << m_patientsModel->record( m_patientsModel->rowCount() - 1 ).field( 0 ).value().toInt();
 }
 
-void MainWindow::on_actionRemove_triggered()
+void MainWindow::onRemovePatient()
 {
-    if( row_cnt != 1)
-        model->removeRow(row_cnt - 1);
-    this->row_cnt--;
-    qDebug() << row_cnt;
+    auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
+    if( currentIndex.isValid() )
+    {
+        int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+        m_patientsModel->removeRow( currentIndex.row() );
+        m_patientsModel->submitAll();
+        m_patientsModel->select();
+        qDebug() << "Removed patient with ID:" << id;
+    }
 }
 
-void MainWindow::sortColumn(int logicalindex)
+void MainWindow::sortPatients( int index, Qt::SortOrder order )
 {
-    qDebug() << logicalindex;
-    model->sort(logicalindex, Qt::AscendingOrder);
-}
-
-void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
-{
-
+    qDebug() << "Sort " << index << order;
+    m_patientsModel->sort( index, order );
 }
