@@ -4,24 +4,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="forms/mainwindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="forms/mainwindow.ui" line="104"/>
         <source>Patient</source>
         <translation>Пациент</translation>
     </message>
     <message>
-        <location filename="forms/mainwindow.ui" line="114"/>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <location filename="forms/mainwindow.ui" line="119"/>
         <source>Remove</source>
         <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add patient</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
