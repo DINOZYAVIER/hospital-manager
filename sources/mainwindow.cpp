@@ -154,12 +154,32 @@ void MainWindow::onDisplayRadiographs()
 
 void MainWindow::onAddRadiograph()
 {
+    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
+    int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
 
+    QSqlRecord record( m_radiographsModel->record() );
+    record.setValue( 0, QVariant() );
+    record.setValue( 1, "" );
+    record.setValue( 2, QVariant( "01.01.1980" ) );
+    record.setValue( 3, "" );
+    record.setValue( 4, id );
+    m_radiographsModel->insertRecord( -1, record );
+    m_radiographsModel->submitAll();
+    m_radiographsModel->select();
+    qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();
 }
 
 void MainWindow::onRemoveRadiograph()
 {
-
+    auto currentIndex = m_ui->radiographTable->selectionModel()->currentIndex();
+    if( currentIndex.isValid() )
+    {
+        int id = m_radiographsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+        m_radiographsModel->removeRow( currentIndex.row() );
+        m_radiographsModel->submitAll();
+        m_radiographsModel->select();
+        qDebug() << "Removed radiograph with ID:" << id;
+    }
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )
