@@ -23,6 +23,11 @@ private Q_SLOTS:
     void onAddPatient();
     void onRemovePatient();
     void onDisplayRecords();
+    void onAddRecord();
+    void onRemoveRecord();
+    void onDisplayRadiographs();
+    void onAddRadiograph();
+    void onRemoveRadiograph();
     void sortPatients( int index, Qt::SortOrder order );
     void languageChangeEnglish();
     void languageChangeRussian();
