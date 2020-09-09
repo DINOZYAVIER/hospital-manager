@@ -27,9 +27,10 @@ MainWindow::MainWindow( QWidget *parent )
     m_radiographsModel->select();
     m_ui->radiographTable->setModel( m_radiographsModel );
 
-    //add and remove patient buttons
+    //buttons related to db
     connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
+    connect( m_ui->aDisplayRecords, &QAction::triggered, this, &MainWindow::onDisplayRecords );
 
     //db sort
     auto* header = m_ui->patientTable->horizontalHeader();
@@ -68,6 +69,31 @@ void MainWindow::onRemovePatient()
         m_patientsModel->submitAll();
         m_patientsModel->select();
         qDebug() << "Removed patient with ID:" << id;
+    }
+}
+
+void MainWindow::onDisplayRecords()
+{
+    m_ui->recordTable->hideColumn(4);
+
+    int rows = m_recordsModel->rowCount();
+    auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
+
+    if( currentIndex.isValid() )
+    {
+        int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+        qDebug() << id;
+        for ( int i = 0; i < rows; ++i )
+        {
+            qDebug() << m_recordsModel->record( i ).field( 4 ).value().toInt();
+            if( id != m_recordsModel->record( i ).field( 4 ).value().toInt() )
+            {
+                m_ui->recordTable->hideRow(i);
+                qDebug() << "Died";
+            }
+            else
+                m_ui->recordTable->showRow(i);
+        }
     }
 }
 

@@ -92,7 +92,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -162,6 +162,7 @@
    </attribute>
    <addaction name="aAddPatient"/>
    <addaction name="aRemovePatient"/>
+   <addaction name="aDisplayRecords"/>
   </widget>
   <action name="aRemovePatient">
    <property name="icon">
@@ -222,6 +223,11 @@
   <action name="aRussian">
    <property name="text">
     <string>Russian</string>
+   </property>
+  </action>
+  <action name="aDisplayRecords">
+   <property name="text">
+    <string>Display Records</string>
    </property>
   </action>
  </widget>

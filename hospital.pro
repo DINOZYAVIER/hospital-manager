@@ -86,3 +86,5 @@ Copy_DB.commands = \
                $$shell_path($$DESTDIR)
 QMAKE_EXTRA_TARGETS += Copy_DB
 POST_TARGETDEPS += Copy_DB
+
+

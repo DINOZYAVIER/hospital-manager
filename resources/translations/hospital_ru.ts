@@ -71,5 +71,9 @@
         <source>Hospital DB Manager</source>
         <translation>Менеджер БД пациентов</translation>
     </message>
+    <message>
+        <source>Display Records</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
