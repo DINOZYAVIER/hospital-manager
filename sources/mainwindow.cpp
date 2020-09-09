@@ -38,6 +38,8 @@ MainWindow::MainWindow( QWidget *parent )
     connect( m_ui->aAddRadiograph, &QAction::triggered, this, &MainWindow::onAddRadiograph );
     connect( m_ui->aRemoveRadiograph, &QAction::triggered, this, &MainWindow::onRemoveRadiograph );
 
+    connect( m_ui->aDisplayEverything, &QAction::triggered, this, &MainWindow::onDisplayEverything );
+
     //db sort
     auto* header = m_ui->patientTable->horizontalHeader();
     connect( header, &QHeaderView::sortIndicatorChanged, this, &MainWindow::sortPatients );
@@ -180,6 +182,19 @@ void MainWindow::onRemoveRadiograph()
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
     }
+}
+
+void MainWindow::onDisplayEverything()
+{
+    int rows = m_recordsModel->rowCount();
+    for( int i = 0; i < rows; ++i)
+        if( m_ui->recordTable->isRowHidden( i ) )
+            m_ui->recordTable->showRow(i);
+
+    rows = m_radiographsModel->rowCount();
+    for( int i = 0; i < rows; ++i)
+        if( m_ui->radiographTable->isRowHidden( i ) )
+            m_ui->radiographTable->showRow(i);
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )

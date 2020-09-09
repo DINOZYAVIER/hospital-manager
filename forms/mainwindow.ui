@@ -168,6 +168,7 @@
    <addaction name="aDisplayRadiographs"/>
    <addaction name="aAddRadiograph"/>
    <addaction name="aRemoveRadiograph"/>
+   <addaction name="aDisplayEverything"/>
   </widget>
   <action name="aRemovePatient">
    <property name="icon">
@@ -258,6 +259,14 @@
   <action name="aDisplayRadiographs">
    <property name="text">
     <string>Display radiographs</string>
+   </property>
+  </action>
+  <action name="aDisplayEverything">
+   <property name="text">
+    <string>Display everything</string>
+   </property>
+   <property name="toolTip">
+    <string>Displays all rows in record and radiograph tables</string>
    </property>
   </action>
  </widget>
