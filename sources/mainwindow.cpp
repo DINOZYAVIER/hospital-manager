@@ -57,6 +57,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::onAddPatient()
 {
+    AddPatientDialog dial;
+    dial.setModal(true);
+    dial.exec();
+
     QSqlRecord record( m_patientsModel->record() );
     record.setValue( 0, QVariant() );
     record.setValue( 1, "" );

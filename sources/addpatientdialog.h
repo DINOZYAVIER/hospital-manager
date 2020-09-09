@@ -2,6 +2,7 @@
 #define ADDPATIENTDIALOG_H
 
 #include <QDialog>
+#include <QAction>
 
 namespace Ui {
 class AddPatientDialog;
@@ -16,7 +17,7 @@ public:
     ~AddPatientDialog();
 
 private:
-    Ui::AddPatientDialog *ui;
+    Ui::AddPatientDialog *m_ui;
 };
 
 #endif // ADDPATIENTDIALOG_H

@@ -3,12 +3,13 @@
 
 AddPatientDialog::AddPatientDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AddPatientDialog)
+    m_ui(new Ui::AddPatientDialog)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
+    //connect( m_ui->submitButton, &QAction::triggered, this, &QDialog::close);
 }
 
 AddPatientDialog::~AddPatientDialog()
 {
-    delete ui;
+    delete m_ui;
 }

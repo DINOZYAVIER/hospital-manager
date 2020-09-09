@@ -24,17 +24,17 @@ INCLUDEPATH += \
 PRECOMPILED_HEADER = sources/precompiled.h
 
 SOURCES += \
-    addpatientdialog.cpp \
+    sources/addpatientdialog.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp
 
 HEADERS += \
-    addpatientdialog.h \
+    sources/addpatientdialog.h \
     sources/mainwindow.h \
     sources/precompiled.h
 
 FORMS += \
-    addpatientdialog.ui \
+    forms/addpatientdialog.ui \
     forms/mainwindow.ui
 
 TRANSLATIONS += \

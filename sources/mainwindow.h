@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QTranslator>
 #include <QLocale>
+#include "addpatientdialog.h"
 
 namespace Ui { class MainWindow; }
 
