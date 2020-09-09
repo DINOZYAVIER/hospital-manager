@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru" sourcelanguage="en">
 <context>
+    <name>AddPatientDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Exit</source>
@@ -73,6 +80,34 @@
     </message>
     <message>
         <source>Display Records</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add radiograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove radiograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display radiographs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display everything</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Displays all rows in record and radiograph tables</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
