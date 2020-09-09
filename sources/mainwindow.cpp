@@ -80,8 +80,7 @@ void MainWindow::sortPatients( int index, Qt::SortOrder order )
 void MainWindow::languageChangeEnglish()
 {
     qDebug() << "English triggered";
-    QLocale locale = QLocale( QLocale::English );
-    loadLanguage( locale );
+    qApp->removeTranslator( &m_translator );
 }
 
 void MainWindow::languageChangeRussian()
@@ -107,18 +106,11 @@ void MainWindow::loadLanguage( QLocale locale )
     {
       m_curLang = locale;
       QLocale::setDefault(locale);
-      QString languageName = QLocale::languageToString( locale.language() );
-      //qDebug() << QString("TranslationExample_%1.qm").arg(language);
 
-      QString defaultLocale = locale.name(); // e.g. "de_DE"
-      qDebug() << defaultLocale;
+      QString newLocale = locale.name();
+      newLocale.truncate(newLocale.lastIndexOf('_'));
 
-       defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // e.g. "de"
-       qDebug() << defaultLocale;
-
-      SwitchTranslator(m_translator, defaultLocale);
-      //switchTranslator(m_translatorQt, QString("qt_%1.qm").arg(rLanguage));
-      //ui.statusBar->showMessage(tr("Current Language changed to %1").arg(languageName));
+      SwitchTranslator(m_translator, newLocale);
     }
 }
 
