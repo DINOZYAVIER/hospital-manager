@@ -8,6 +8,7 @@
 #include <QLocale>
 #include <QActionGroup>
 #include "addpatientdialog.h"
+#include "addrecorddialog.h"
 
 namespace Ui { class MainWindow; }
 

@@ -124,14 +124,18 @@ void MainWindow::onDisplayRecords()
 
 void MainWindow::onAddRecord()
 {
+    AddRecordDialog dial;
+    dial.exec();
+    QVariant* data = dial.getData();
+
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
     int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
 
     QSqlRecord record( m_recordsModel->record() );
     record.setValue( 0, QVariant() );
-    record.setValue( 1, "" );
-    record.setValue( 2, QVariant( "01.01.1980" ) );
-    record.setValue( 3, QVariant( "01.01.1980" ) );
+    record.setValue( 1, data[0] );
+    record.setValue( 2, data[1] );
+    record.setValue( 3, data[2] );
     record.setValue( 4, id );
     m_recordsModel->insertRecord( -1, record );
     m_recordsModel->submitAll();

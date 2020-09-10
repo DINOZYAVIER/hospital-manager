@@ -136,6 +136,9 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="minimumSize">
     <size>
      <width>0</width>
@@ -162,12 +165,12 @@
    </attribute>
    <addaction name="aAddPatient"/>
    <addaction name="aRemovePatient"/>
-   <addaction name="aDisplayRecords"/>
    <addaction name="aAddRecord"/>
    <addaction name="aRemoveRecord"/>
-   <addaction name="aDisplayRadiographs"/>
    <addaction name="aAddRadiograph"/>
    <addaction name="aRemoveRadiograph"/>
+   <addaction name="aDisplayRecords"/>
+   <addaction name="aDisplayRadiographs"/>
    <addaction name="aDisplayEverything"/>
   </widget>
   <action name="aRemovePatient">

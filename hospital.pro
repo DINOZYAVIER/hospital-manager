@@ -25,18 +25,21 @@ PRECOMPILED_HEADER = sources/precompiled.h
 
 SOURCES += \
     sources/addpatientdialog.cpp \
+    sources/addrecorddialog.cpp \
     sources/languagemanager.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp
 
 HEADERS += \
     sources/addpatientdialog.h \
+    sources/addrecorddialog.h \
     sources/languagemanager.h \
     sources/mainwindow.h \
     sources/precompiled.h
 
 FORMS += \
     forms/addpatientdialog.ui \
+    forms/addrecorddialog.ui \
     forms/mainwindow.ui
 
 TRANSLATIONS += \

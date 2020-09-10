@@ -2,7 +2,7 @@
 #define ADDPATIENTDIALOG_H
 
 #include <QDialog>
-#include <QAction>
+#include <QVariant>
 
 namespace Ui {
 class AddPatientDialog;
@@ -19,7 +19,7 @@ public:
     QVariant* getData() { return m_data; }
 
 private Q_SLOTS:
-    void onSubmit();
+    void onSubmitPatient();
 
 private:
     Ui::AddPatientDialog *m_ui;
