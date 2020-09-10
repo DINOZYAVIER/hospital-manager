@@ -9,6 +9,7 @@ MainWindow::MainWindow( QWidget *parent )
     : QMainWindow(parent)
     , m_ui( new Ui::MainWindow )
 {
+    loadSettings();
     m_ui->setupUi( this );
     m_db = QSqlDatabase::addDatabase( "QSQLITE" );
     m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
@@ -57,10 +58,15 @@ MainWindow::MainWindow( QWidget *parent )
     m_ui->aRussian->setCheckable( true );
 
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
+
+    m_ui->aDisplayRecords->setVisible(false);
+    m_ui->aDisplayRadiographs->setVisible(false);
+    m_ui->aDisplayEverything->setVisible(false);
 }
 
 MainWindow::~MainWindow()
 {
+    saveSettings();
     delete m_ui;
     m_db.close();
 }
@@ -247,6 +253,24 @@ void MainWindow::changeEvent( QEvent* event )
         }
     }
     QMainWindow::changeEvent(event);
+}
+
+void MainWindow::loadSettings()
+{
+    //here we load settings
+    QSettings settings( QSettings::IniFormat, QSettings::UserScope,"NIX Solutions", "Hospital" );
+    settings.beginGroup( "MainWindow" );
+    QString lang = settings.value( "language", "en" ).toString();
+    lm.loadLanguage(lang);
+    settings.endGroup();
+}
+void MainWindow::saveSettings()
+{
+    //here we save settings
+    QSettings settings( QSettings::IniFormat, QSettings::UserScope, "NIX Solutions", "Hospital" );
+    settings.beginGroup( "MainWindow" );
+    settings.setValue( "language", lm.getCurLang() );
+    settings.endGroup();
 }
 
 

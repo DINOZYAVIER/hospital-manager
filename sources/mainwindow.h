@@ -7,6 +7,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QActionGroup>
+#include <QSettings>
 #include "addpatientdialog.h"
 #include "addrecorddialog.h"
 
@@ -21,6 +22,8 @@ public:
 
     void loadLanguage( QLocale locale );
     void changeEvent( QEvent* event );
+    void loadSettings();
+    void saveSettings();
 
 private Q_SLOTS:
     void onAddPatient();
@@ -41,8 +44,6 @@ private:
     QSqlTableModel* m_patientsModel;
     QSqlTableModel* m_recordsModel;
     QSqlTableModel* m_radiographsModel;
-    QTranslator m_translator;
-    QLocale m_curLang;
     QActionGroup* m_langGroup;
 };
 

@@ -33,6 +33,7 @@ public:
     static LanguageManager& get_instance();
     void loadLanguage( const QString& langCode );
     void SwitchTranslator( const QString& langCode );
+    QString getCurLang() { return m_curLang; }
 };
 
 

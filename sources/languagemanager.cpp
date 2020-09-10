@@ -27,7 +27,10 @@ LanguageManager& LanguageManager::get_instance()
 void LanguageManager::loadLanguage( const QString& langCode )
 {
     if( langCode == "en" )
+    {
         qApp->removeTranslator( &m_translator );
+        m_curLang = "en";
+    }
     else
     {
         if( m_curLang != langCode )
