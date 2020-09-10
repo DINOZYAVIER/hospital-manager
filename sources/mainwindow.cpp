@@ -1,6 +1,9 @@
 #include "precompiled.h"
 #include "mainwindow.h"
+#include "languagemanager.h"
 #include "ui_mainwindow.h"
+
+LanguageManager &lm = LanguageManager::get_instance();
 
 MainWindow::MainWindow( QWidget *parent )
     : QMainWindow(parent)
@@ -44,18 +47,15 @@ MainWindow::MainWindow( QWidget *parent )
     auto* header = m_ui->patientTable->horizontalHeader();
     connect( header, &QHeaderView::sortIndicatorChanged, this, &MainWindow::sortPatients );
 
-    //translation buttons
+    //translation
     m_langGroup = new QActionGroup( this );
+    m_langGroup->addAction( m_ui->aEnglish );
+    m_langGroup->addAction( m_ui->aRussian );
     m_langGroup->setExclusive( true );
     m_ui->aEnglish->setCheckable( true );
     m_ui->aRussian->setCheckable( true );
-    m_langGroup->addAction( m_ui->aEnglish );
-    m_langGroup->addAction( m_ui->aRussian );
-
 
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
-    //connect( m_ui->aEnglish, &QAction::triggered, this, &MainWindow::languageChangeEnglish );
-    //connect( m_ui->aRussian, &QAction::triggered, this, &MainWindow::languageChangeRussian );
 }
 
 MainWindow::~MainWindow()
@@ -218,24 +218,7 @@ void MainWindow::sortPatients( int index, Qt::SortOrder order )
 
 void MainWindow::languageChange()
 {
-    if( m_langGroup->checkedAction()->text() == "Russian")
-        loadLanguage( QLocale::Russian );
-    else
-        qApp->removeTranslator( &m_translator );
-}
-
-void MainWindow::languageChangeEnglish()
-{
-    qDebug() << "English triggered";
-    qApp->removeTranslator( &m_translator );
-}
-
-void MainWindow::languageChangeRussian()
-{
-    qDebug() << "Russian triggered";
-    qDebug() << m_langGroup->checkedAction();
-    QLocale locale = QLocale( QLocale::Russian );
-    loadLanguage( locale );
+    lm.loadLanguage( m_langGroup->checkedAction()->toolTip() );
 }
 
 void SwitchTranslator( QTranslator& translator, const QString& language )

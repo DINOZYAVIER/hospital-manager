@@ -225,10 +225,16 @@
    <property name="text">
     <string>English</string>
    </property>
+   <property name="toolTip">
+    <string notr="true">en</string>
+   </property>
   </action>
   <action name="aRussian">
    <property name="text">
     <string>Russian</string>
+   </property>
+   <property name="toolTip">
+    <string notr="true">ru</string>
    </property>
   </action>
   <action name="aDisplayRecords">

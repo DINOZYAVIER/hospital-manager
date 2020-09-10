@@ -25,11 +25,13 @@ PRECOMPILED_HEADER = sources/precompiled.h
 
 SOURCES += \
     sources/addpatientdialog.cpp \
+    sources/languagemanager.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp
 
 HEADERS += \
     sources/addpatientdialog.h \
+    sources/languagemanager.h \
     sources/mainwindow.h \
     sources/precompiled.h
 

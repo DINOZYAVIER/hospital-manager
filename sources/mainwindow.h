@@ -32,8 +32,6 @@ private Q_SLOTS:
     void onRemoveRadiograph();
     void onDisplayEverything();
     void sortPatients( int index, Qt::SortOrder order );
-    void languageChangeEnglish();
-    void languageChangeRussian();
     void languageChange();
 
 private:
