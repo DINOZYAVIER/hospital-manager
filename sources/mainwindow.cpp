@@ -71,10 +71,14 @@ void MainWindow::onAddPatient()
     dial.setModal(true);
     dial.exec();
 
+    QVariant* data = dial.getData();
+    qDebug() << data[0] << data[1] << data[2];
+
     QSqlRecord record( m_patientsModel->record() );
     record.setValue( 0, QVariant() );
-    record.setValue( 1, "" );
-    record.setValue( 2, QVariant( "01.01.1980" ) );
+    record.setValue( 1, data[0] );
+    record.setValue( 2, data[1] );
+    record.setValue( 3, data[2] );
     m_patientsModel->insertRecord( -1, record );
     m_patientsModel->submitAll();
     m_patientsModel->select();

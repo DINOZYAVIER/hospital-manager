@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="textEditName">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -29,7 +29,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QTextEdit" name="textEditBirthday">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -45,7 +45,7 @@
     </sizepolicy>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_3">
+  <widget class="QTextEdit" name="textEditAddress">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -113,7 +113,7 @@
     <string>Submit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -128,9 +128,9 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>textEdit</tabstop>
-  <tabstop>textEdit_2</tabstop>
-  <tabstop>textEdit_3</tabstop>
+  <tabstop>textEditName</tabstop>
+  <tabstop>textEditBirthday</tabstop>
+  <tabstop>textEditAddress</tabstop>
  </tabstops>
  <resources/>
  <connections/>
