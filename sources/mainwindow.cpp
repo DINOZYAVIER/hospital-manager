@@ -14,6 +14,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
     qDebug() << QCoreApplication::applicationDirPath();
     m_db.open();
+    m_db.exec( "PRAGMA foreign_keys = ON" );
 
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
@@ -89,6 +90,8 @@ void MainWindow::onRemovePatient()
         m_patientsModel->removeRow( currentIndex.row() );
         m_patientsModel->submitAll();
         m_patientsModel->select();
+        m_recordsModel->select();
+        m_radiographsModel->select();
         qDebug() << "Removed patient with ID:" << id;
     }
 }
@@ -141,6 +144,7 @@ void MainWindow::onRemoveRecord()
         m_recordsModel->removeRow( currentIndex.row() );
         m_recordsModel->submitAll();
         m_recordsModel->select();
+        m_radiographsModel->select();
         qDebug() << "Removed record with ID:" << id;
     }
 }

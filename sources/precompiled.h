@@ -11,6 +11,7 @@
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlField>
+#include <QSqlQuery>
 #include <QHeaderView>
 #include <QDebug>
 #include <QItemDelegate>
