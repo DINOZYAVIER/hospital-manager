@@ -8,6 +8,7 @@
 #include <QLocale>
 #include <QActionGroup>
 #include <QSettings>
+#include <QStandardPaths>
 #include "addpatientdialog.h"
 #include "addrecorddialog.h"
 

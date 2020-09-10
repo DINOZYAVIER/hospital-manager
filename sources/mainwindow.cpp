@@ -110,7 +110,6 @@ void MainWindow::onDisplayRecords()
 {
     m_ui->recordTable->hideColumn(4);
 
-    int rows = m_recordsModel->rowCount();
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
 
     if( currentIndex.isValid() )
@@ -159,8 +158,6 @@ void MainWindow::onRemoveRecord()
 void MainWindow::onDisplayRadiographs()
 {
     m_ui->radiographTable->hideColumn(4);
-
-    int rows = m_radiographsModel->rowCount();
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
 
     if( currentIndex.isValid() )
@@ -243,7 +240,9 @@ void MainWindow::changeEvent( QEvent* event )
 void MainWindow::loadSettings()
 {
     //here we load settings
-    QSettings settings( QSettings::IniFormat, QSettings::UserScope,"NIX Solutions", "Hospital" );
+    QSettings settings( QStandardPaths::displayName (QStandardPaths::AppDataLocation) + "/hospital.ini",
+                        QSettings::IniFormat );
+    //QSettings settings( QSettings::IniFormat, QSettings::UserScope,"NIX Solutions", "Hospital" );
     settings.beginGroup( "MainWindow" );
     QString lang = settings.value( "language", "en" ).toString();
     lm.loadLanguage(lang);
@@ -252,7 +251,8 @@ void MainWindow::loadSettings()
 void MainWindow::saveSettings()
 {
     //here we save settings
-    QSettings settings( QSettings::IniFormat, QSettings::UserScope, "NIX Solutions", "Hospital" );
+    QSettings settings( QStandardPaths::displayName (QStandardPaths::AppDataLocation) + "/hospital.ini",
+                        QSettings::IniFormat);
     settings.beginGroup( "MainWindow" );
     settings.setValue( "language", lm.getCurLang() );
     settings.endGroup();
