@@ -59,8 +59,8 @@ MainWindow::MainWindow( QWidget *parent )
 
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
 
-    m_ui->aDisplayRecords->setVisible(false);
-    m_ui->aDisplayRadiographs->setVisible(false);
+    //m_ui->aDisplayRecords->setVisible(false);
+    //m_ui->aDisplayRadiographs->setVisible(false);
     m_ui->aDisplayEverything->setVisible(false);
 }
 
@@ -115,16 +115,9 @@ void MainWindow::onDisplayRecords()
 
     if( currentIndex.isValid() )
     {
-        int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+        QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
         qDebug() << id;
-        for ( int i = 0; i < rows; ++i )
-        {
-            qDebug() << m_recordsModel->record( i ).field( 4 ).value().toInt();
-            if( id != m_recordsModel->record( i ).field( 4 ).value().toInt() )
-                m_ui->recordTable->hideRow(i);
-            else
-                m_ui->recordTable->showRow(i);
-        }
+        m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
     }
 }
 
@@ -172,16 +165,8 @@ void MainWindow::onDisplayRadiographs()
 
     if( currentIndex.isValid() )
     {
-        int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-        qDebug() << id;
-        for ( int i = 0; i < rows; ++i )
-        {
-            qDebug() << m_radiographsModel->record( i ).field( 4 ).value().toInt();
-            if( id != m_radiographsModel->record( i ).field( 4 ).value().toInt() )
-                m_ui->radiographTable->hideRow(i);
-            else
-                m_ui->radiographTable->showRow(i);
-        }
+        QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+        m_radiographsModel->setFilter("RecordID='" + id.toString() + "'");
     }
 }
 
