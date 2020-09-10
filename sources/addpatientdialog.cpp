@@ -6,7 +6,7 @@ AddPatientDialog::AddPatientDialog(QWidget *parent) :
     m_ui(new Ui::AddPatientDialog)
 {
     m_ui->setupUi(this);
-    //connect( m_ui->submitButton, &QAction::triggered, this, &QDialog::close);
+    //connect( m_ui->submitButton, &QAction::triggered, parent, &QDialog::reject );
 }
 
 AddPatientDialog::~AddPatientDialog()

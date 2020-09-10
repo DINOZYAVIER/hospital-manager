@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QTranslator>
 #include <QLocale>
+#include <QActionGroup>
 #include "addpatientdialog.h"
 
 namespace Ui { class MainWindow; }
@@ -33,6 +34,7 @@ private Q_SLOTS:
     void sortPatients( int index, Qt::SortOrder order );
     void languageChangeEnglish();
     void languageChangeRussian();
+    void languageChange();
 
 private:
     Ui::MainWindow* m_ui;
@@ -42,6 +44,7 @@ private:
     QSqlTableModel* m_radiographsModel;
     QTranslator m_translator;
     QLocale m_curLang;
+    QActionGroup* m_langGroup;
 };
 
 void SwitchTranslator( QTranslator& translator, const QString& language );
