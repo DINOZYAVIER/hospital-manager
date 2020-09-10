@@ -32,7 +32,7 @@ protected:
 public:
     static LanguageManager& get_instance();
     void loadLanguage( const QString& langCode );
-    void SwitchTranslatorA( const QString& langCode );
+    void SwitchTranslator( const QString& langCode );
 };
 
 

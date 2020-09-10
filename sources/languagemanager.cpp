@@ -33,12 +33,12 @@ void LanguageManager::loadLanguage( const QString& langCode )
         if( m_curLang != langCode )
         {
             m_curLang = langCode;
-            SwitchTranslatorA( langCode );
+            SwitchTranslator( langCode );
         }
     }
 }
 
-void LanguageManager::SwitchTranslatorA( const QString& langCode )
+void LanguageManager::SwitchTranslator( const QString& langCode )
 {
     // remove the old translator
      qApp->removeTranslator( &m_translator );

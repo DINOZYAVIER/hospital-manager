@@ -225,30 +225,6 @@ void MainWindow::languageChange()
     lm.loadLanguage( m_langGroup->checkedAction()->toolTip() );
 }
 
-void SwitchTranslator( QTranslator& translator, const QString& language )
-{
-    // remove the old translator
-     qApp->removeTranslator( &translator );
-
-     // load the new translator
-     if( translator.load( ":/translations/hospital_" + language + ".qm") )
-         qApp->installTranslator(&translator);
-}
-
-void MainWindow::loadLanguage( QLocale locale )
-{
-    if(m_curLang != locale)
-    {
-      m_curLang = locale;
-      QLocale::setDefault(locale);
-
-      QString newLocale = locale.name();
-      newLocale.truncate(newLocale.lastIndexOf('_'));
-
-      SwitchTranslator(m_translator, newLocale);
-    }
-}
-
 void MainWindow::changeEvent( QEvent* event )
 {
     if( 0 != event )
@@ -260,12 +236,6 @@ void MainWindow::changeEvent( QEvent* event )
                 m_ui->retranslateUi(this);
                 break;
 
-            // this event is send, if the system, language changes
-            case QEvent::LocaleChange:
-                QString locale = QLocale::system().name();
-                locale.truncate(locale.lastIndexOf('_'));
-                loadLanguage(locale);
-                break;
         }
     }
     QMainWindow::changeEvent(event);

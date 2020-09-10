@@ -45,5 +45,4 @@ private:
     QActionGroup* m_langGroup;
 };
 
-void SwitchTranslator( QTranslator& translator, const QString& language );
 #endif // MAINWINDOW_H
