@@ -66,9 +66,6 @@ void MainWindow::onAddPatient()
     dial.setModal(true);
     dial.exec();
 
-    PatientRecordWidget PatRecWidget;
-    PatRecWidget.show();
-
     QVariant* data = dial.getData();
     qDebug() << data[0] << data[1] << data[2];
 
@@ -119,7 +116,9 @@ void MainWindow::onRemoveRecord()
 }
 
 void MainWindow::onAddRadiograph()
-{/*
+{
+    m_ui->recordsWidget->addRadiographSignal();
+    /*
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
 

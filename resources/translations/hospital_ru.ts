@@ -172,4 +172,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>addRadiographDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

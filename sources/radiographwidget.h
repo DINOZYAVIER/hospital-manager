@@ -10,6 +10,7 @@
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlField>
+#include <addradiographdialog.h>
 
 namespace Ui {
 class RadiographWidget;
