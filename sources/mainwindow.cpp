@@ -18,7 +18,6 @@ MainWindow::MainWindow( QWidget *parent )
     m_db.exec( "PRAGMA foreign_keys = ON" );
 
     emit m_ui->recordsWidget->constructSignal( m_db );
-    m_ui->recordsWidget->show();
 
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );

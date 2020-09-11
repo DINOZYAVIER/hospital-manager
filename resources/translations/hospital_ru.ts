@@ -165,4 +165,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>RadiographWidget</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

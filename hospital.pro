@@ -29,7 +29,8 @@ SOURCES += \
     sources/languagemanager.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp \
-    sources/patientrecordwidget.cpp
+    sources/patientrecordwidget.cpp \
+    sources/radiographwidget.cpp
 
 HEADERS += \
     sources/addpatientdialog.h \
@@ -37,13 +38,15 @@ HEADERS += \
     sources/languagemanager.h \
     sources/mainwindow.h \
     sources/patientrecordwidget.h \
-    sources/precompiled.h
+    sources/precompiled.h \
+    sources/radiographwidget.h
 
 FORMS += \
     forms/addpatientdialog.ui \
     forms/addrecorddialog.ui \
     forms/mainwindow.ui \
-    forms/patientrecordwidget.ui
+    forms/patientrecordwidget.ui \
+    forms/radiographwidget.ui
 
 TRANSLATIONS += \
     resources/translations/hospital_ru.ts

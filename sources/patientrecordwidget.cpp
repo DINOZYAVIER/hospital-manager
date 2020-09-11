@@ -1,11 +1,11 @@
 #include "patientrecordwidget.h"
 #include "ui_patientrecordwidget.h"
 
-PatientRecordWidget::PatientRecordWidget(QWidget *parent) :
-    QWidget(parent),
-    m_ui(new Ui::PatientRecordWidget)
+PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
+    QWidget( parent ),
+    m_ui( new Ui::PatientRecordWidget )
 {
-   m_ui->setupUi(this);
+   m_ui->setupUi( this );
 
    connect( this, &PatientRecordWidget::addRecordSignal, this, &PatientRecordWidget::onAddRecord );
    connect( this, &PatientRecordWidget::removeRecordSignal, this, &PatientRecordWidget::onRemoveRecord );
@@ -19,9 +19,10 @@ PatientRecordWidget::~PatientRecordWidget()
     delete m_ui;
 }
 
-void PatientRecordWidget::onConstruct ( QSqlDatabase db)
+void PatientRecordWidget::onConstruct ( QSqlDatabase db )
 {
     m_db = db;
+    emit m_ui->radiographWidget->constructSignal ( db );
 
     m_recordsModel = new QSqlTableModel( this );
     m_recordsModel->setTable( "ClinicalRecords" );
@@ -68,3 +69,24 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
     qDebug() << id;
     m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
 }
+
+void PatientRecordWidget::onAddRadiograph()
+{
+    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
+    int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+    emit m_ui->radiographWidget->addRadiographSignal( id );
+}
+
+void PatientRecordWidget::onRemoveRadiograph()
+{
+    emit m_ui->radiographWidget->removeRadiographSignal();
+}
+
+void PatientRecordWidget::onDisplayRadiographs()
+{
+    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
+    QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
+    if( currentIndex.isValid() )
+        emit m_ui->radiographWidget->displayRadiographsSignal( id );
+}
+

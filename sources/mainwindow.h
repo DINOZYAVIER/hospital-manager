@@ -12,6 +12,7 @@
 #include "addpatientdialog.h"
 #include "addrecorddialog.h"
 #include "patientrecordwidget.h"
+#include "radiographwidget.h"
 
 namespace Ui { class MainWindow; }
 

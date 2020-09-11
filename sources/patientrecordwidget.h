@@ -2,9 +2,13 @@
 #define PATIENTRECORDWIDGET_H
 
 #include <QWidget>
+#include <QDebug>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
-#include <precompiled.h>
+#include <QTableView>
+#include <QSqlTableModel>
+#include <QSqlDatabase>
+#include <QSqlRecord>
 #include "mainwindow.h"
 #include "addrecorddialog.h"
 
@@ -23,17 +27,25 @@ Q_SIGNALS:
     void constructSignal( QSqlDatabase db );
     void addRecordSignal( int id );
     void removeRecordSignal();
-    void displayRecordsSignal( QVariant id);
+    void displayRecordsSignal( QVariant id );
+    void addRadiographSignal();
+    void removeRadiographSignal();
+    void displayRadiographsSignal();
+
+
 private Q_SLOTS:
     void onConstruct( QSqlDatabase db );
     void onAddRecord( int id );
     void onRemoveRecord();
     void onDisplayRecords( QVariant id);
+    void onAddRadiograph();
+    void onRemoveRadiograph();
+    void onDisplayRadiographs();
 
 private:
     Ui::PatientRecordWidget *m_ui;
     QSqlDatabase m_db;
-    QSqlTableModel* m_recordsModel;
+    QSqlTableModel *m_recordsModel;
 };
 
 #endif // PATIENTRECORDWIDGET_H
