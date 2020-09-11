@@ -20,13 +20,16 @@ public:
     explicit PatientRecordWidget(QWidget *parent = nullptr);
     ~PatientRecordWidget();
 Q_SIGNALS:
+    void constructSignal( QSqlDatabase db );
     void addRecordSignal( int id );
     void removeRecordSignal();
-    void constructSignal( QSqlDatabase db );
+    void displayRecordsSignal( QVariant id);
 private Q_SLOTS:
+    void onConstruct( QSqlDatabase db );
     void onAddRecord( int id );
     void onRemoveRecord();
-    void onConstruct( QSqlDatabase db );
+    void onDisplayRecords( QVariant id);
+
 private:
     Ui::PatientRecordWidget *m_ui;
     QSqlDatabase m_db;

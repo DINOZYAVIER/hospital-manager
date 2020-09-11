@@ -7,14 +7,27 @@ PatientRecordWidget::PatientRecordWidget(QWidget *parent) :
 {
    m_ui->setupUi(this);
 
-   connect(this, &PatientRecordWidget::addRecordSignal, this, &PatientRecordWidget::onAddRecord);
-   connect(this, &PatientRecordWidget::constructSignal, this, &PatientRecordWidget::onConstruct);
+   connect( this, &PatientRecordWidget::addRecordSignal, this, &PatientRecordWidget::onAddRecord );
+   connect( this, &PatientRecordWidget::removeRecordSignal, this, &PatientRecordWidget::onRemoveRecord );
+   connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
+   connect( this, &PatientRecordWidget::constructSignal, this, &PatientRecordWidget::onConstruct );
 
 }
 
 PatientRecordWidget::~PatientRecordWidget()
 {
     delete m_ui;
+}
+
+void PatientRecordWidget::onConstruct ( QSqlDatabase db)
+{
+    m_db = db;
+
+    m_recordsModel = new QSqlTableModel( this );
+    m_recordsModel->setTable( "ClinicalRecords" );
+    m_recordsModel->select();
+    m_ui->recordTable->setModel( m_recordsModel );
+    m_ui->recordTable->hideColumn(4);
 }
 
 void PatientRecordWidget::onAddRecord( int id )
@@ -50,12 +63,8 @@ void PatientRecordWidget::onRemoveRecord()
     }
 }
 
-void PatientRecordWidget::onConstruct ( QSqlDatabase db)
+void PatientRecordWidget::onDisplayRecords( QVariant id )
 {
-    m_db = db;
-
-    m_recordsModel = new QSqlTableModel( this );
-    m_recordsModel->setTable( "ClinicalRecords" );
-    m_recordsModel->select();
-    m_ui->recordTable->setModel( m_recordsModel );
+    qDebug() << id;
+    m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
 }

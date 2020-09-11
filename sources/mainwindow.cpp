@@ -18,16 +18,12 @@ MainWindow::MainWindow( QWidget *parent )
     m_db.exec( "PRAGMA foreign_keys = ON" );
 
     emit m_ui->recordsWidget->constructSignal( m_db );
+    m_ui->recordsWidget->show();
 
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
-
-    m_recordsModel = new QSqlTableModel( this );
-    m_recordsModel->setTable( "ClinicalRecords" );
-    m_recordsModel->select();
-    m_ui->recordTable->setModel( m_recordsModel );
 
     m_radiographsModel = new QSqlTableModel( this );
     m_radiographsModel->setTable( "Radiographs" );
@@ -38,15 +34,13 @@ MainWindow::MainWindow( QWidget *parent )
     connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
 
-    connect( m_ui->aDisplayRecords, &QAction::triggered, this, &MainWindow::onDisplayRecords );
+    connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
     connect( m_ui->aAddRecord, &QAction::triggered, this, &MainWindow::onAddRecord );
     connect( m_ui->aRemoveRecord, &QAction::triggered, this, &MainWindow::onRemoveRecord );
 
-    connect( m_ui->aDisplayRadiographs, &QAction::triggered, this, &MainWindow::onDisplayRadiographs );
+    //connect( m_ui->aDisplayRadiographs->, &clicked(), this, &MainWindow::onDisplayRadiographs );
     connect( m_ui->aAddRadiograph, &QAction::triggered, this, &MainWindow::onAddRadiograph );
     connect( m_ui->aRemoveRadiograph, &QAction::triggered, this, &MainWindow::onRemoveRadiograph );
-
-    connect( m_ui->aDisplayEverything, &QAction::triggered, this, &MainWindow::onDisplayEverything );
 
     //db sort
     auto* header = m_ui->patientTable->horizontalHeader();
@@ -59,12 +53,9 @@ MainWindow::MainWindow( QWidget *parent )
     m_langGroup->setExclusive( true );
     m_ui->aEnglish->setCheckable( true );
     m_ui->aRussian->setCheckable( true );
-
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
 
-    //m_ui->aDisplayRecords->setVisible(false);
-    //m_ui->aDisplayRadiographs->setVisible(false);
-    m_ui->aDisplayEverything->setVisible(false);
+    emit m_ui->recordsWidget->displayRecordsSignal( 0 );
 }
 
 MainWindow::~MainWindow()
@@ -114,16 +105,10 @@ void MainWindow::onRemovePatient()
 
 void MainWindow::onDisplayRecords()
 {
-    m_ui->recordTable->hideColumn(4);
-
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
-
+    QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
-    {
-        QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-        qDebug() << id;
-        m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
-    }
+        emit m_ui->recordsWidget->displayRecordsSignal( id );
 }
 
 void MainWindow::onAddRecord()
@@ -140,6 +125,7 @@ void MainWindow::onRemoveRecord()
 
 void MainWindow::onDisplayRadiographs()
 {
+    /*
     m_ui->radiographTable->hideColumn(4);
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
 
@@ -147,11 +133,11 @@ void MainWindow::onDisplayRadiographs()
     {
         QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
         m_radiographsModel->setFilter("RecordID='" + id.toString() + "'");
-    }
+    }*/
 }
 
 void MainWindow::onAddRadiograph()
-{
+{/*
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
 
@@ -164,7 +150,7 @@ void MainWindow::onAddRadiograph()
     m_radiographsModel->insertRecord( -1, record );
     m_radiographsModel->submitAll();
     m_radiographsModel->select();
-    qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();*/
 }
 
 void MainWindow::onRemoveRadiograph()
@@ -181,7 +167,7 @@ void MainWindow::onRemoveRadiograph()
 }
 
 void MainWindow::onDisplayEverything()
-{
+{/*
     int rows = m_recordsModel->rowCount();
     for( int i = 0; i < rows; ++i)
         if( m_ui->recordTable->isRowHidden( i ) )
@@ -190,7 +176,7 @@ void MainWindow::onDisplayEverything()
     rows = m_radiographsModel->rowCount();
     for( int i = 0; i < rows; ++i)
         if( m_ui->radiographTable->isRowHidden( i ) )
-            m_ui->radiographTable->showRow(i);
+            m_ui->radiographTable->showRow(i);*/
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )

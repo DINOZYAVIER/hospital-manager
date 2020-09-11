@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>141</height>
+    <width>800</width>
+    <height>318</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,10 +18,25 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>381</width>
-     <height>121</height>
+     <width>780</width>
+     <height>300</height>
     </rect>
    </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <attribute name="horizontalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderStretchLastSection">
+    <bool>false</bool>
+   </attribute>
   </widget>
  </widget>
  <resources/>
