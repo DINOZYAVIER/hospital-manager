@@ -54,10 +54,6 @@
         <source>Date out</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Patient ID</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -159,6 +155,13 @@
     </message>
     <message>
         <source>Displays all rows in record and radiograph tables</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PatientRecordWidget</name>
+    <message>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -28,19 +28,22 @@ SOURCES += \
     sources/addrecorddialog.cpp \
     sources/languagemanager.cpp \
     sources/main.cpp \
-    sources/mainwindow.cpp
+    sources/mainwindow.cpp \
+    sources/patientrecordwidget.cpp
 
 HEADERS += \
     sources/addpatientdialog.h \
     sources/addrecorddialog.h \
     sources/languagemanager.h \
     sources/mainwindow.h \
+    sources/patientrecordwidget.h \
     sources/precompiled.h
 
 FORMS += \
     forms/addpatientdialog.ui \
     forms/addrecorddialog.ui \
-    forms/mainwindow.ui
+    forms/mainwindow.ui \
+    forms/patientrecordwidget.ui
 
 TRANSLATIONS += \
     resources/translations/hospital_ru.ts

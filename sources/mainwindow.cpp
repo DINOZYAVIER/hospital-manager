@@ -77,6 +77,9 @@ void MainWindow::onAddPatient()
     dial.setModal(true);
     dial.exec();
 
+    PatientRecordWidget PatRecWidget;
+    PatRecWidget.show();
+
     QVariant* data = dial.getData();
     qDebug() << data[0] << data[1] << data[2];
 

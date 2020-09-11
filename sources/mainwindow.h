@@ -11,6 +11,7 @@
 #include <QStandardPaths>
 #include "addpatientdialog.h"
 #include "addrecorddialog.h"
+#include "patientrecordwidget.h"
 
 namespace Ui { class MainWindow; }
 
