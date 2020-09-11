@@ -84,6 +84,9 @@
       </attribute>
      </widget>
     </item>
+    <item>
+     <widget class="PatientRecordWidget" name="recordsWidget" native="true"/>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -279,6 +282,14 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PatientRecordWidget</class>
+   <extends>QWidget</extends>
+   <header>patientrecordwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resources/resources.qrc"/>
  </resources>

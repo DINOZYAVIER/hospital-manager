@@ -26,6 +26,7 @@ public:
     void changeEvent( QEvent* event );
     void loadSettings();
     void saveSettings();
+    QSqlDatabase getDB() { return m_db; }
 
 private Q_SLOTS:
     void onAddPatient();

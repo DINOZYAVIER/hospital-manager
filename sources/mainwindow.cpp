@@ -17,6 +17,8 @@ MainWindow::MainWindow( QWidget *parent )
     m_db.open();
     m_db.exec( "PRAGMA foreign_keys = ON" );
 
+    emit m_ui->recordsWidget->constructSignal( m_db );
+
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
     m_patientsModel->select();
@@ -31,6 +33,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_radiographsModel->setTable( "Radiographs" );
     m_radiographsModel->select();
     m_ui->radiographTable->setModel( m_radiographsModel );
+
 
     connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
@@ -125,37 +128,14 @@ void MainWindow::onDisplayRecords()
 
 void MainWindow::onAddRecord()
 {
-    AddRecordDialog dial;
-    dial.exec();
-    QVariant* data = dial.getData();
-
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
     int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-
-    QSqlRecord record( m_recordsModel->record() );
-    record.setValue( 0, QVariant() );
-    record.setValue( 1, data[0] );
-    record.setValue( 2, data[1] );
-    record.setValue( 3, data[2] );
-    record.setValue( 4, id );
-    m_recordsModel->insertRecord( -1, record );
-    m_recordsModel->submitAll();
-    m_recordsModel->select();
-    qDebug() << "Added record with ID:" << m_recordsModel->record( m_recordsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    emit m_ui->recordsWidget->addRecordSignal( id );
 }
 
 void MainWindow::onRemoveRecord()
 {
-    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
-    if( currentIndex.isValid() )
-    {
-        int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-        m_recordsModel->removeRow( currentIndex.row() );
-        m_recordsModel->submitAll();
-        m_recordsModel->select();
-        m_radiographsModel->select();
-        qDebug() << "Removed record with ID:" << id;
-    }
+    emit m_ui->recordsWidget->removeRecordSignal();
 }
 
 void MainWindow::onDisplayRadiographs()
