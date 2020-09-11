@@ -173,9 +173,6 @@
    <addaction name="aRemoveRecord"/>
    <addaction name="aAddRadiograph"/>
    <addaction name="aRemoveRadiograph"/>
-   <addaction name="aDisplayRecords"/>
-   <addaction name="aDisplayRadiographs"/>
-   <addaction name="aDisplayEverything"/>
   </widget>
   <action name="aRemovePatient">
    <property name="icon">

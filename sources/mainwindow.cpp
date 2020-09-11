@@ -30,17 +30,13 @@ MainWindow::MainWindow( QWidget *parent )
     m_radiographsModel->select();
     m_ui->radiographTable->setModel( m_radiographsModel );
 
-
     connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
-
-    connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
     connect( m_ui->aAddRecord, &QAction::triggered, this, &MainWindow::onAddRecord );
     connect( m_ui->aRemoveRecord, &QAction::triggered, this, &MainWindow::onRemoveRecord );
-
-    //connect( m_ui->aDisplayRadiographs->, &clicked(), this, &MainWindow::onDisplayRadiographs );
     connect( m_ui->aAddRadiograph, &QAction::triggered, this, &MainWindow::onAddRadiograph );
     connect( m_ui->aRemoveRadiograph, &QAction::triggered, this, &MainWindow::onRemoveRadiograph );
+    connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
 
     //db sort
     auto* header = m_ui->patientTable->horizontalHeader();
@@ -123,19 +119,6 @@ void MainWindow::onRemoveRecord()
     emit m_ui->recordsWidget->removeRecordSignal();
 }
 
-void MainWindow::onDisplayRadiographs()
-{
-    /*
-    m_ui->radiographTable->hideColumn(4);
-    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
-
-    if( currentIndex.isValid() )
-    {
-        QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-        m_radiographsModel->setFilter("RecordID='" + id.toString() + "'");
-    }*/
-}
-
 void MainWindow::onAddRadiograph()
 {/*
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
@@ -166,19 +149,6 @@ void MainWindow::onRemoveRadiograph()
     }
 }
 
-void MainWindow::onDisplayEverything()
-{/*
-    int rows = m_recordsModel->rowCount();
-    for( int i = 0; i < rows; ++i)
-        if( m_ui->recordTable->isRowHidden( i ) )
-            m_ui->recordTable->showRow(i);
-
-    rows = m_radiographsModel->rowCount();
-    for( int i = 0; i < rows; ++i)
-        if( m_ui->radiographTable->isRowHidden( i ) )
-            m_ui->radiographTable->showRow(i);*/
-}
-
 void MainWindow::sortPatients( int index, Qt::SortOrder order )
 {
     qDebug() << "Sort " << index << order;
@@ -200,7 +170,6 @@ void MainWindow::changeEvent( QEvent* event )
             case QEvent::LanguageChange:
                 m_ui->retranslateUi(this);
                 break;
-
         }
     }
     QMainWindow::changeEvent(event);
