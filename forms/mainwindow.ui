@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>700</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>10</y>
       <width>780</width>
-      <height>300</height>
+      <height>200</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -45,41 +45,13 @@
      <bool>false</bool>
     </attribute>
    </widget>
-   <widget class="QTableView" name="radiographTable">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>590</y>
-      <width>18</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContents</enum>
-    </property>
-    <attribute name="horizontalHeaderStretchLastSection">
-     <bool>true</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-   </widget>
    <widget class="PatientRecordWidget" name="recordsWidget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>310</y>
+      <y>210</y>
       <width>800</width>
-      <height>300</height>
+      <height>200</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -87,6 +59,16 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+   </widget>
+   <widget class="RadiographWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>410</y>
+      <width>800</width>
+      <height>251</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -285,6 +267,12 @@
    <class>PatientRecordWidget</class>
    <extends>QWidget</extends>
    <header>patientrecordwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RadiographWidget</class>
+   <extends>QWidget</extends>
+   <header>radiographwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

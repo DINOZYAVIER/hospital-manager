@@ -24,11 +24,6 @@ MainWindow::MainWindow( QWidget *parent )
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
 
-    m_radiographsModel = new QSqlTableModel( this );
-    m_radiographsModel->setTable( "Radiographs" );
-    m_radiographsModel->select();
-    m_ui->radiographTable->setModel( m_radiographsModel );
-
     connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->aAddRecord, &QAction::triggered, this, &MainWindow::onAddRecord );
@@ -135,7 +130,7 @@ void MainWindow::onAddRadiograph()
 }
 
 void MainWindow::onRemoveRadiograph()
-{
+{/*
     auto currentIndex = m_ui->radiographTable->selectionModel()->currentIndex();
     if( currentIndex.isValid() )
     {
@@ -144,7 +139,7 @@ void MainWindow::onRemoveRadiograph()
         m_radiographsModel->submitAll();
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
-    }
+    }*/
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )

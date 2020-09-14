@@ -14,10 +14,6 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
    connect( this, &PatientRecordWidget::addRadiographSignal, this, &PatientRecordWidget::onAddRadiograph );
    connect( this, &PatientRecordWidget::removeRadiographSignal, this, &PatientRecordWidget::onRemoveRadiograph );
    connect( this, &PatientRecordWidget::displayRadiographsSignal, this, &PatientRecordWidget::onDisplayRadiographs );
-
-
-
-
 }
 
 PatientRecordWidget::~PatientRecordWidget()
@@ -39,8 +35,8 @@ void PatientRecordWidget::onConstruct ( QSqlDatabase db )
 
 void PatientRecordWidget::onAddRecord( int id )
 {
-    qDebug() << "HELLO" << m_recordsModel->rowCount();
     AddRecordDialog dial;
+    dial.setModal(true);
     dial.exec();
     QVariant* data = dial.getData();
 
@@ -78,8 +74,6 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
 
 void PatientRecordWidget::onAddRadiograph()
 {
-    qDebug() << "Hello there";
-
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     emit m_ui->radiographWidget->addRadiographSignal( id );
