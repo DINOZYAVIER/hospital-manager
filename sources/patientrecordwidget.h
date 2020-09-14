@@ -31,6 +31,9 @@ Q_SIGNALS:
     void addRadiographSignal();
     void removeRadiographSignal();
     void displayRadiographsSignal();
+    void displayNextRadiographSignal();
+    void displayPrevRadiographSignal();
+
 
 
 private Q_SLOTS:
@@ -41,6 +44,8 @@ private Q_SLOTS:
     void onAddRadiograph();
     void onRemoveRadiograph();
     void onDisplayRadiographs();
+    void onDisplayNext();
+    void onDisplayPrev();
 
 private:
     Ui::PatientRecordWidget *m_ui;

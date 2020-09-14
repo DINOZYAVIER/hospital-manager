@@ -37,6 +37,8 @@ private Q_SLOTS:
     void onRemoveRecord();
     void onAddRadiograph();
     void onRemoveRadiograph();
+    void onDisplayNextRadiograph();
+    void onDisplayPrevRadiograph();
     void sortPatients( int index, Qt::SortOrder order );
     void languageChange();
 

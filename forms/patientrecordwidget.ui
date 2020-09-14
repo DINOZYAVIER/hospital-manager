@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>329</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>780</width>
-     <height>300</height>
+     <height>250</height>
     </rect>
    </property>
    <property name="sizeAdjustPolicy">
@@ -38,13 +38,13 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="RadiographWidget" name="radiographWidget" native="true">
+  <widget class="RadiographWidget" name="radiographsWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>320</y>
-     <width>120</width>
-     <height>80</height>
+     <x>10</x>
+     <y>260</y>
+     <width>781</width>
+     <height>431</height>
     </rect>
    </property>
   </widget>

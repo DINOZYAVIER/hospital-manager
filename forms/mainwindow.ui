@@ -17,9 +17,9 @@
    <widget class="QTableView" name="patientTable">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>9</x>
       <y>10</y>
-      <width>780</width>
+      <width>781</width>
       <height>200</height>
      </rect>
     </property>
@@ -48,10 +48,10 @@
    <widget class="PatientRecordWidget" name="recordsWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>9</x>
       <y>210</y>
-      <width>800</width>
-      <height>200</height>
+      <width>781</width>
+      <height>471</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -59,16 +59,6 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
-    </property>
-   </widget>
-   <widget class="RadiographWidget" name="widget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>410</y>
-      <width>800</width>
-      <height>251</height>
-     </rect>
     </property>
    </widget>
   </widget>
@@ -155,6 +145,8 @@
    <addaction name="aRemoveRecord"/>
    <addaction name="aAddRadiograph"/>
    <addaction name="aRemoveRadiograph"/>
+   <addaction name="aNextRadiograph"/>
+   <addaction name="aPrevRadiograph"/>
   </widget>
   <action name="aRemovePatient">
    <property name="icon">
@@ -261,18 +253,28 @@
     <string>Displays all rows in record and radiograph tables</string>
    </property>
   </action>
+  <action name="aNextRadiograph">
+   <property name="text">
+    <string>Next Radiograph</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Right</string>
+   </property>
+  </action>
+  <action name="aPrevRadiograph">
+   <property name="text">
+    <string>Previous radiograph</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Left</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
    <class>PatientRecordWidget</class>
    <extends>QWidget</extends>
    <header>patientrecordwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>RadiographWidget</class>
-   <extends>QWidget</extends>
-   <header>radiographwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

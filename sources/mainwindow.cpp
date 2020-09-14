@@ -30,6 +30,8 @@ MainWindow::MainWindow( QWidget *parent )
     connect( m_ui->aRemoveRecord, &QAction::triggered, this, &MainWindow::onRemoveRecord );
     connect( m_ui->aAddRadiograph, &QAction::triggered, this, &MainWindow::onAddRadiograph );
     connect( m_ui->aRemoveRadiograph, &QAction::triggered, this, &MainWindow::onRemoveRadiograph );
+    connect( m_ui->aNextRadiograph, &QAction::triggered, this, &MainWindow::onDisplayNextRadiograph );
+    connect( m_ui->aPrevRadiograph, &QAction::triggered, this, &MainWindow::onDisplayPrevRadiograph );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
 
     //db sort
@@ -112,21 +114,7 @@ void MainWindow::onRemoveRecord()
 
 void MainWindow::onAddRadiograph()
 {
-    m_ui->recordsWidget->addRadiographSignal();
-    /*
-    auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
-    int id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-
-    QSqlRecord record( m_radiographsModel->record() );
-    record.setValue( 0, QVariant() );
-    record.setValue( 1, "" );
-    record.setValue( 2, QVariant( "01.01.1980" ) );
-    record.setValue( 3, "" );
-    record.setValue( 4, id );
-    m_radiographsModel->insertRecord( -1, record );
-    m_radiographsModel->submitAll();
-    m_radiographsModel->select();
-    qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();*/
+    emit m_ui->recordsWidget->addRadiographSignal();
 }
 
 void MainWindow::onRemoveRadiograph()
@@ -140,6 +128,20 @@ void MainWindow::onRemoveRadiograph()
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
     }*/
+}
+
+void MainWindow::onDisplayNextRadiograph()
+{
+    qDebug() << "MainWindow::onDisplayNextRadiograph()";
+
+    emit m_ui->recordsWidget->displayNextRadiographSignal();
+}
+
+void MainWindow::onDisplayPrevRadiograph()
+{
+    qDebug() << "MainWindow::onDisplayPrevRadiograph()";
+
+    emit m_ui->recordsWidget->displayPrevRadiographSignal();
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )
