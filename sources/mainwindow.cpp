@@ -118,29 +118,17 @@ void MainWindow::onAddRadiograph()
 }
 
 void MainWindow::onRemoveRadiograph()
-{/*
-    auto currentIndex = m_ui->radiographTable->selectionModel()->currentIndex();
-    if( currentIndex.isValid() )
-    {
-        int id = m_radiographsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-        m_radiographsModel->removeRow( currentIndex.row() );
-        m_radiographsModel->submitAll();
-        m_radiographsModel->select();
-        qDebug() << "Removed radiograph with ID:" << id;
-    }*/
+{
+    emit m_ui->recordsWidget->removeRadiographSignal();
 }
 
 void MainWindow::onDisplayNextRadiograph()
 {
-    qDebug() << "MainWindow::onDisplayNextRadiograph()";
-
     emit m_ui->recordsWidget->displayNextRadiographSignal();
 }
 
 void MainWindow::onDisplayPrevRadiograph()
 {
-    qDebug() << "MainWindow::onDisplayPrevRadiograph()";
-
     emit m_ui->recordsWidget->displayPrevRadiographSignal();
 }
 

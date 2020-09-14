@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>784</width>
     <height>700</height>
    </rect>
   </property>
@@ -16,9 +16,9 @@
   <widget class="QTableView" name="recordTable">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>780</width>
+     <x>0</x>
+     <y>0</y>
+     <width>781</width>
      <height>250</height>
     </rect>
    </property>
@@ -41,7 +41,7 @@
   <widget class="RadiographWidget" name="radiographsWidget" native="true">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>260</y>
      <width>781</width>
      <height>431</height>

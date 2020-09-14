@@ -96,13 +96,10 @@ void PatientRecordWidget::onDisplayRadiographs()
 
 void PatientRecordWidget::onDisplayNext()
 {
-    qDebug() << "PatientRecordWidget::onDisplayNext()";
     emit m_ui->radiographsWidget->nextRadiographSignal();
 }
 
 void PatientRecordWidget::onDisplayPrev()
 {
-    qDebug() << "PatientRecordWidget::onDisplayPrev()";
-
     emit m_ui->radiographsWidget->prevRadiographSignal();
 }

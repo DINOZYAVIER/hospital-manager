@@ -22,7 +22,6 @@ void AddPatientDialog::onSubmitPatient()
     m_data[0] = m_ui->textEditName->toPlainText();
     m_data[1] = m_ui->textEditBirthday->toPlainText();
     m_data[2] = m_ui->textEditAddress->toPlainText();
-    qDebug() << m_data[0] << m_data[1] << m_data[2];
     this->close();
 }
 
