@@ -10,6 +10,7 @@
 #include <QSqlDatabase>
 #include <QSqlRecord>
 #include <QSqlField>
+#include <QAction>
 #include <addradiographdialog.h>
 
 namespace Ui {
@@ -37,6 +38,7 @@ private Q_SLOTS:
     void onDisplayRadiograph( QVariant id );
     void onDisplayNext();
     void onDisplayPrev();
+    void onUpdateInfo();
 private:
     Ui::RadiographWidget *m_ui;
     QSqlDatabase m_db;

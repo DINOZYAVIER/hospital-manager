@@ -14,6 +14,9 @@ RadiographWidget::RadiographWidget(QWidget *parent) :
     connect( this, &RadiographWidget::displayRadiographsSignal, this, &RadiographWidget::onDisplayRadiograph );
     connect( this, &RadiographWidget::nextRadiographSignal, this, &RadiographWidget::onDisplayNext );
     connect( this, &RadiographWidget::prevRadiographSignal, this, &RadiographWidget::onDisplayPrev );
+    connect( m_ui->DescriptionEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
+    connect( m_ui->DateEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
+
 
 }
 
@@ -89,13 +92,13 @@ void RadiographWidget::onDisplayRadiograph( QVariant id )
          m_ui->imageLabel->setPixmap(( mpixmap ));
          m_ui->DateEdit->setText( "" );
          m_ui->DescriptionEdit->setText( "" );
-
+         m_current_id = -1;
     }
 }
 
 void RadiographWidget::onDisplayNext()
 {
-    if( m_current_id < m_radiographsModel->rowCount() - 1 )
+    if( m_current_id >= 0 && m_current_id < m_radiographsModel->rowCount() - 1 )
     {
         ++m_current_id;
         m_ui->DateEdit->setText( m_radiographsModel->record( m_current_id ).field( "Date" ).value().toString() );
@@ -103,10 +106,7 @@ void RadiographWidget::onDisplayNext()
         QByteArray data = m_radiographsModel->record( m_current_id ).field( "Radiograph" ).value().toByteArray();
         QPixmap mpixmap = QPixmap();
         if( mpixmap.loadFromData( data ))
-        {
-            qDebug() << "SUCCESS+";
             m_ui->imageLabel->setPixmap(( mpixmap ));
-        }
     }
 }
 
@@ -120,10 +120,21 @@ void RadiographWidget::onDisplayPrev()
         QByteArray data = m_radiographsModel->record( m_current_id ).field( "Radiograph" ).value().toByteArray();
         QPixmap mpixmap = QPixmap();
         if( mpixmap.loadFromData( data ))
-        {
-            qDebug() << "SUCCESS-";
             m_ui->imageLabel->setPixmap(( mpixmap ));
-        }
+    }
+}
+
+void RadiographWidget::onUpdateInfo()
+{
+    if( m_current_id >= 0 )
+    {
+        qDebug() << "cache hit";
+
+        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 1), m_ui->DescriptionEdit->toPlainText() );
+        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 2), m_ui->DateEdit->toPlainText() );
+
+        m_radiographsModel->submitAll();
+        m_radiographsModel->select();
     }
 }
 
