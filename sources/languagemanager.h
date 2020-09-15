@@ -2,8 +2,6 @@
 #define LANGUAGEMANAGER_H
 
 #include <QTranslator>
-#include <QLocale>
-#include <QActionGroup>
 
 class LanguageManager;
 
@@ -18,23 +16,22 @@ public:
 
 class LanguageManager
 {
-private:
-    static LanguageManager* p_instance;
-    static LanguageManagerDestroyer destroyer;
-    QTranslator m_translator;
-    QString m_curLang = "en";
+public:
+    static LanguageManager& get_instance();
+    void loadLanguage( const QString& langCode );
+    void SwitchTranslator( const QString& langCode );
+    QString getCurLang() { return m_curLang; }
 protected:
     LanguageManager() { }
     LanguageManager( const LanguageManager& );
     LanguageManager& operator=( LanguageManager& );
     ~LanguageManager() { }
     friend class LanguageManagerDestroyer;
-public:
-    static LanguageManager& get_instance();
-    void loadLanguage( const QString& langCode );
-    void SwitchTranslator( const QString& langCode );
-    QString getCurLang() { return m_curLang; }
+private:
+    static LanguageManager* p_instance;
+    static LanguageManagerDestroyer destroyer;
+    QTranslator m_translator;
+    QString m_curLang = "en";
 };
-
 
 #endif // LANGUAGEMANAGER_H

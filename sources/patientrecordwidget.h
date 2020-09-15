@@ -11,6 +11,7 @@
 #include <QSqlRecord>
 #include "mainwindow.h"
 #include "addrecorddialog.h"
+#include "actionstore.h"
 
 namespace Ui {
 class PatientRecordWidget;
@@ -24,26 +25,15 @@ public:
     explicit PatientRecordWidget(QWidget *parent = nullptr);
     ~PatientRecordWidget();
 Q_SIGNALS:
-    void constructSignal( QSqlDatabase db );
     void addRecordSignal( int id );
     void removeRecordSignal();
     void displayRecordsSignal( QVariant id );
-    void addRadiographSignal();
-    void removeRadiographSignal();
-    void displayRadiographsSignal();
-    void displayNextRadiographSignal();
-    void displayPrevRadiographSignal();
+
 private Q_SLOTS:
-    void onConstruct( QSqlDatabase db );
     void onAddRecord( int id );
     void onRemoveRecord();
     void onDisplayRecords( QVariant id);
-    void onRecordClicked();
-    void onAddRadiograph();
-    void onRemoveRadiograph();
     void onDisplayRadiographs();
-    void onDisplayNext();
-    void onDisplayPrev();
 
 private:
     Ui::PatientRecordWidget *m_ui;

@@ -10,9 +10,10 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include "addpatientdialog.h"
-#include "addrecorddialog.h"
 #include "patientrecordwidget.h"
 #include "radiographwidget.h"
+#include "languagemanager.h"
+#include "actionstore.h"
 
 namespace Ui { class MainWindow; }
 
@@ -33,12 +34,6 @@ private Q_SLOTS:
     void onAddPatient();
     void onRemovePatient();
     void onDisplayRecords();
-    void onAddRecord();
-    void onRemoveRecord();
-    void onAddRadiograph();
-    void onRemoveRadiograph();
-    void onDisplayNextRadiograph();
-    void onDisplayPrevRadiograph();
     void sortPatients( int index, Qt::SortOrder order );
     void languageChange();
 

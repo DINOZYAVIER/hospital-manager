@@ -1,6 +1,7 @@
 #include "radiographwidget.h"
 #include "ui_radiographwidget.h"
 
+
 RadiographWidget::RadiographWidget( QWidget *parent ) :
     QWidget( parent ),
     m_ui( new Ui::RadiographWidget ),
@@ -9,29 +10,24 @@ RadiographWidget::RadiographWidget( QWidget *parent ) :
     m_ui->setupUi( this );
     m_ui->imageLabel->setScaledContents( true );
 
-    connect( this, &RadiographWidget::constructSignal, this, &RadiographWidget::onConstruct );
-    connect( m_ui->addRadiographButton, &QAbstractButton::clicked, this, &RadiographWidget::onAddRadiograph );
-    connect( this, &RadiographWidget::removeRadiographSignal, this, &RadiographWidget::onRemoveRadiograph );
+    m_radiographsModel = new QSqlTableModel( this );
+    m_radiographsModel->setTable( "Radiographs" );
+    m_radiographsModel->select();
+
+    /*ActionStore& as = ActionStore::get_instance();
     connect( this, &RadiographWidget::displayRadiographsSignal, this, &RadiographWidget::onDisplayRadiograph );
-    connect( this, &RadiographWidget::nextRadiographSignal, this, &RadiographWidget::onDisplayNext );
-    connect( this, &RadiographWidget::prevRadiographSignal, this, &RadiographWidget::onDisplayPrev );
     connect( m_ui->DescriptionEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
     connect( m_ui->DateEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
     connect( this, &RadiographWidget::recordClickedSignal, this, &RadiographWidget::onRecordClicked );
+    connect( m_ui->addRadiographButton, &QAbstractButton::clicked, this, &RadiographWidget::onAddRadiograph );
+    connect( as.action( aRemovePatient ), &QAction::triggered, this, &RadiographWidget::onRemoveRadiograph );
+    connect( as.action( aPrevRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayNext );
+    connect( as.action( aNextRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayPrev );*/
 }
 
 RadiographWidget::~RadiographWidget()
 {
     delete m_ui;
-}
-
-void RadiographWidget::onConstruct( QSqlDatabase db )
-{
-    m_db = db;
-
-    m_radiographsModel = new QSqlTableModel( this );
-    m_radiographsModel->setTable( "Radiographs" );
-    m_radiographsModel->select();
 }
 
 void RadiographWidget::onAddRadiograph()

@@ -24,6 +24,7 @@ INCLUDEPATH += \
 PRECOMPILED_HEADER = sources/precompiled.h
 
 SOURCES += \
+    sources/actionstore.cpp \
     sources/addpatientdialog.cpp \
     sources/addrecorddialog.cpp \
     sources/languagemanager.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     sources/radiographwidget.cpp
 
 HEADERS += \
+    sources/actionstore.h \
     sources/addpatientdialog.h \
     sources/addrecorddialog.h \
     sources/languagemanager.h \

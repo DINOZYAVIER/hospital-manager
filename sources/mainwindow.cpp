@@ -1,14 +1,23 @@
 #include "precompiled.h"
 #include "mainwindow.h"
-#include "languagemanager.h"
 #include "ui_mainwindow.h"
 
+ActionStore &as = ActionStore::get_instance();
 LanguageManager &lm = LanguageManager::get_instance();
 
 MainWindow::MainWindow( QWidget *parent )
-    : QMainWindow(parent)
+    : QMainWindow( parent )
     , m_ui( new Ui::MainWindow )
 {
+    as.addAction( aAddPatient, m_ui->aAddPatient );
+    as.addAction( aRemovePatient, m_ui->aRemovePatient) ;
+    as.addAction( aAddRecord, m_ui->aAddRecord );
+    as.addAction( aRemoveRecord, m_ui->aRemoveRecord );
+    as.addAction( aAddRadiograph, m_ui->aRemoveRadiograph );
+    as.addAction( aRemoveRadiograph, m_ui->aRemoveRadiograph );
+    as.addAction( aNextRadiograph, m_ui->aNextRadiograph );
+    as.addAction( aPrevRadiograph, m_ui->aPrevRadiograph );
+
     loadSettings();
     m_ui->setupUi( this );
     m_db = QSqlDatabase::addDatabase( "QSQLITE" );
@@ -17,21 +26,17 @@ MainWindow::MainWindow( QWidget *parent )
     m_db.open();
     m_db.exec( "PRAGMA foreign_keys = ON" );
 
-    emit m_ui->recordsWidget->constructSignal( m_db );
-
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
+    if( m_ui->aAddPatient == as.action( aAddPatient ) )
+    {
+        qDebug() << "whyyy";
+    }
 
-    connect( m_ui->aAddPatient, &QAction::triggered, this, &MainWindow::onAddPatient );
-    connect( m_ui->aRemovePatient, &QAction::triggered, this, &MainWindow::onRemovePatient );
-    connect( m_ui->aAddRecord, &QAction::triggered, this, &MainWindow::onAddRecord );
-    connect( m_ui->aRemoveRecord, &QAction::triggered, this, &MainWindow::onRemoveRecord );
-    connect( m_ui->aAddRadiograph, &QAction::triggered, this, &MainWindow::onAddRadiograph );
-    connect( m_ui->aRemoveRadiograph, &QAction::triggered, this, &MainWindow::onRemoveRadiograph );
-    connect( m_ui->aNextRadiograph, &QAction::triggered, this, &MainWindow::onDisplayNextRadiograph );
-    connect( m_ui->aPrevRadiograph, &QAction::triggered, this, &MainWindow::onDisplayPrevRadiograph );
+    //connect( as.action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
+    //connect( as.action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
 
     //db sort
@@ -98,38 +103,6 @@ void MainWindow::onDisplayRecords()
     QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
         emit m_ui->recordsWidget->displayRecordsSignal( id );
-}
-
-void MainWindow::onAddRecord()
-{
-    auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
-    int id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
-    emit m_ui->recordsWidget->addRecordSignal( id );
-}
-
-void MainWindow::onRemoveRecord()
-{
-    emit m_ui->recordsWidget->removeRecordSignal();
-}
-
-void MainWindow::onAddRadiograph()
-{
-    emit m_ui->recordsWidget->addRadiographSignal();
-}
-
-void MainWindow::onRemoveRadiograph()
-{
-    emit m_ui->recordsWidget->removeRadiographSignal();
-}
-
-void MainWindow::onDisplayNextRadiograph()
-{
-    emit m_ui->recordsWidget->displayNextRadiographSignal();
-}
-
-void MainWindow::onDisplayPrevRadiograph()
-{
-    emit m_ui->recordsWidget->displayPrevRadiographSignal();
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )
