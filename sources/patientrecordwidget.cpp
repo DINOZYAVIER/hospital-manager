@@ -72,6 +72,8 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
 {
     qDebug() << id;
     m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
+    m_ui->radiographsWidget->displayClear();
+
 }
 
 void PatientRecordWidget::onAddRadiograph()

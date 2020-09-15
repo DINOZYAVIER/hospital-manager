@@ -63,6 +63,7 @@ void RadiographWidget::onRemoveRadiograph()
         m_radiographsModel->submitAll();
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
+        displayClear();
     }
 }
 
@@ -87,13 +88,7 @@ void RadiographWidget::onDisplayRadiograph( QVariant id )
         }
     }
     else
-    {
-         QPixmap mpixmap = QPixmap();
-         m_ui->imageLabel->setPixmap(( mpixmap ));
-         m_ui->DateEdit->setText( "" );
-         m_ui->DescriptionEdit->setText( "" );
-         m_current_id = -1;
-    }
+        displayClear();
 }
 
 void RadiographWidget::onDisplayNext()
@@ -126,15 +121,25 @@ void RadiographWidget::onDisplayPrev()
 
 void RadiographWidget::onUpdateInfo()
 {
-    if( m_current_id >= 0 )
+    if( m_current_id >= 0
+            && m_ui->DescriptionEdit->toPlainText() != ""
+            && m_ui->DateEdit->toPlainText() != "" )
     {
         qDebug() << "cache hit";
 
-        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 1), m_ui->DescriptionEdit->toPlainText() );
-        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 2), m_ui->DateEdit->toPlainText() );
-
+        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 1 ), m_ui->DescriptionEdit->toPlainText() );
+        m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 2 ), m_ui->DateEdit->toPlainText() );
         m_radiographsModel->submitAll();
         m_radiographsModel->select();
     }
+}
+
+void RadiographWidget::displayClear()
+{
+    QPixmap mpixmap = QPixmap();
+    m_ui->imageLabel->setPixmap(( mpixmap ));
+    m_ui->DateEdit->setText( "" );
+    m_ui->DescriptionEdit->setText( "" );
+    m_current_id = -1;
 }
 

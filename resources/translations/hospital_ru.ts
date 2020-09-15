@@ -157,6 +157,22 @@
         <source>Displays all rows in record and radiograph tables</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Next Radiograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous radiograph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PatientRecordWidget</name>

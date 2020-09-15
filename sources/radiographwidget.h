@@ -24,6 +24,8 @@ class RadiographWidget : public QWidget
 public:
     explicit RadiographWidget(QWidget *parent = nullptr);
     ~RadiographWidget();
+
+    void displayClear();
 Q_SIGNALS:
     void constructSignal( QSqlDatabase db );
     void addRadiographSignal( int id );
