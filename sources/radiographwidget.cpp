@@ -125,8 +125,6 @@ void RadiographWidget::onUpdateInfo()
             && m_ui->DescriptionEdit->toPlainText() != ""
             && m_ui->DateEdit->toPlainText() != "" )
     {
-        qDebug() << "cache hit";
-
         m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 1 ), m_ui->DescriptionEdit->toPlainText() );
         m_radiographsModel->setData( m_radiographsModel->index( m_current_id, 2 ), m_ui->DateEdit->toPlainText() );
         m_radiographsModel->submitAll();
