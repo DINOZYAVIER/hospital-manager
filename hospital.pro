@@ -25,7 +25,6 @@ PRECOMPILED_HEADER = sources/precompiled.h
 
 SOURCES += \
     sources/addpatientdialog.cpp \
-    sources/addradiographdialog.cpp \
     sources/addrecorddialog.cpp \
     sources/languagemanager.cpp \
     sources/main.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
 
 HEADERS += \
     sources/addpatientdialog.h \
-    sources/addradiographdialog.h \
     sources/addrecorddialog.h \
     sources/languagemanager.h \
     sources/mainwindow.h \
@@ -45,7 +43,6 @@ HEADERS += \
 
 FORMS += \
     forms/addpatientdialog.ui \
-    forms/addradiographdialog.ui \
     forms/addrecorddialog.ui \
     forms/mainwindow.ui \
     forms/patientrecordwidget.ui \

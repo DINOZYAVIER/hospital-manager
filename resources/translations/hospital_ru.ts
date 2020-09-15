@@ -195,35 +195,8 @@
         <source>Date</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>addRadiographDialog</name>
     <message>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Submit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add...</source>
+        <source>Add radiograph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
