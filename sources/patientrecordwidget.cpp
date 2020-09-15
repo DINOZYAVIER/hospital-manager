@@ -16,6 +16,7 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
    connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );
    connect( this, &PatientRecordWidget::displayNextRadiographSignal, this, &PatientRecordWidget::onDisplayNext );
    connect( this, &PatientRecordWidget::displayPrevRadiographSignal, this, &PatientRecordWidget::onDisplayPrev );
+   connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onRecordClicked );
 
 }
 
@@ -73,7 +74,6 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
     qDebug() << id;
     m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
     m_ui->radiographsWidget->displayClear();
-
 }
 
 void PatientRecordWidget::onAddRadiograph()
@@ -93,7 +93,12 @@ void PatientRecordWidget::onDisplayRadiographs()
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
+    {
+        emit m_ui->radiographsWidget->recordClickedSignal( id.toInt() );
         emit m_ui->radiographsWidget->displayRadiographsSignal( id );
+    }
+
+    qDebug() << id;
 }
 
 void PatientRecordWidget::onDisplayNext()
@@ -104,4 +109,9 @@ void PatientRecordWidget::onDisplayNext()
 void PatientRecordWidget::onDisplayPrev()
 {
     emit m_ui->radiographsWidget->prevRadiographSignal();
+}
+
+void PatientRecordWidget::onRecordClicked()
+{
+
 }

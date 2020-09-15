@@ -108,6 +108,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="addRadiographButton">
+       <property name="text">
+        <string>Add radiograph</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

@@ -33,14 +33,12 @@ Q_SIGNALS:
     void displayRadiographsSignal();
     void displayNextRadiographSignal();
     void displayPrevRadiographSignal();
-
-
-
 private Q_SLOTS:
     void onConstruct( QSqlDatabase db );
     void onAddRecord( int id );
     void onRemoveRecord();
     void onDisplayRecords( QVariant id);
+    void onRecordClicked();
     void onAddRadiograph();
     void onRemoveRadiograph();
     void onDisplayRadiographs();

@@ -33,9 +33,11 @@ Q_SIGNALS:
     void displayRadiographsSignal( QVariant id );
     void nextRadiographSignal();
     void prevRadiographSignal();
+    void recordClickedSignal( int id );
 private Q_SLOTS:
     void onConstruct( QSqlDatabase db );
-    void onAddRadiograph( int id );
+    void onRecordClicked( int id );
+    void onAddRadiograph();
     void onRemoveRadiograph();
     void onDisplayRadiograph( QVariant id );
     void onDisplayNext();
@@ -46,6 +48,7 @@ private:
     QSqlDatabase m_db;
     QSqlTableModel* m_radiographsModel;
     int m_current_id;
+    int m_current_radiograph;
 };
 
 #endif // RADIOGRAPHWIDGET_H
