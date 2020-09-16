@@ -2,8 +2,6 @@
 #include "radiographwidget.h"
 #include "ui_radiographwidget.h"
 
-//extern ActionStore& as;
-
 RadiographWidget::RadiographWidget( QWidget *parent ) :
     QWidget( parent ),
     m_ui( new Ui::RadiographWidget ),
@@ -16,7 +14,7 @@ RadiographWidget::RadiographWidget( QWidget *parent ) :
     m_radiographsModel->setTable( "Radiographs" );
     m_radiographsModel->select();
 
-    /*ActionStore& as = ActionStore::get_instance();
+    /*
     connect( this, &RadiographWidget::displayRadiographsSignal, this, &RadiographWidget::onDisplayRadiograph );
     connect( m_ui->DescriptionEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
     connect( m_ui->DateEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );

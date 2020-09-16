@@ -14,8 +14,8 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
    m_ui->recordTable->setModel( m_recordsModel );
    m_ui->recordTable->hideColumn(4);
 
-   connect( ActionStore::action( aAddRecord ), &QAction::triggered, this, &PatientRecordWidget::onAddRecord );
-   //connect( ActionStore::instance().action( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
+   //connect( ActionStore::action( aAddRecord ), &QAction::triggered, this, &PatientRecordWidget::onAddRecord );
+   //connect( ActionStore::( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
    connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
    connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );/**/
 }
@@ -59,7 +59,6 @@ void PatientRecordWidget::onRemoveRecord()
 
 void PatientRecordWidget::onDisplayRecords( QVariant id )
 {
-    qDebug() << id;
     m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
     m_ui->radiographsWidget->displayClear();
 }

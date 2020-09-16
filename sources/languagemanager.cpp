@@ -2,25 +2,10 @@
 #include "languagemanager.h"
 
 LanguageManager * LanguageManager::p_instance = 0;
-LanguageManagerDestroyer LanguageManager::destroyer;
-
-LanguageManagerDestroyer::~LanguageManagerDestroyer()
-{
-    delete p_instance;
-}
-
-void LanguageManagerDestroyer::initialize( LanguageManager* p )
-{
-    p_instance = p;
-}
 
 LanguageManager& LanguageManager::get_instance()
 {
-    if( !p_instance )
-    {
-        p_instance = new LanguageManager();
-        destroyer.initialize( p_instance );
-    }
+    static LanguageManager *p_instance = new LanguageManager();
     return *p_instance;
 }
 

@@ -31,6 +31,9 @@ MainWindow::MainWindow( QWidget *parent )
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
 
+    if( m_ui->aAddRecord == ActionStore::action( aAddRecord ))
+        qDebug() << "why";
+
     connect( ActionStore::action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
