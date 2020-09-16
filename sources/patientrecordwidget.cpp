@@ -30,11 +30,12 @@ void PatientRecordWidget::onConstruct ( QSqlDatabase db )
     m_db = db;
     emit m_ui->radiographsWidget->constructSignal ( db );
 
-    m_recordsModel = new QSqlTableModel( this );
+    m_recordsModel = new QSqlRelationalTableModel( this );
     m_recordsModel->setTable( "ClinicalRecords" );
     m_recordsModel->select();
     m_ui->recordTable->setModel( m_recordsModel );
-    m_ui->recordTable->hideColumn(4);
+    m_recordsModel->setRelation( 4, QSqlRelation("Patients", "id", "Full_name" ));
+    //m_ui->recordTable->hideColumn(4);
 }
 
 void PatientRecordWidget::onAddRecord( int id )

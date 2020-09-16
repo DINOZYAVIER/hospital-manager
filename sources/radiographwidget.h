@@ -11,7 +11,8 @@
 #include <QSqlRecord>
 #include <QSqlField>
 #include <QAction>
-#include <addradiographdialog.h>
+#include <QFileDialog>
+//#include <addradiographdialog.h>
 
 namespace Ui {
 class RadiographWidget;
