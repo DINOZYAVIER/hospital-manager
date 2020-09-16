@@ -1,6 +1,7 @@
+#include "precompiled.h"
 #include "addpatientdialog.h"
 #include "ui_addpatientdialog.h"
-#include "precompiled.h"
+
 
 AddPatientDialog::AddPatientDialog(QWidget *parent) :
     QDialog(parent),
@@ -9,7 +10,6 @@ AddPatientDialog::AddPatientDialog(QWidget *parent) :
     m_ui->setupUi(this);
     connect( m_ui->submitButton, &QAbstractButton::clicked, this, &AddPatientDialog::onSubmitPatient );
     connect( m_ui->cancelButton, &QAbstractButton::clicked, this, &QDialog::close );
-
 }
 
 AddPatientDialog::~AddPatientDialog()

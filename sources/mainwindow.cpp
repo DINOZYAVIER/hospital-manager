@@ -2,24 +2,24 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-ActionStore &as = ActionStore::get_instance();
 LanguageManager &lm = LanguageManager::get_instance();
 
 MainWindow::MainWindow( QWidget *parent )
     : QMainWindow( parent )
     , m_ui( new Ui::MainWindow )
 {
-    as.addAction( aAddPatient, m_ui->aAddPatient );
-    as.addAction( aRemovePatient, m_ui->aRemovePatient) ;
-    as.addAction( aAddRecord, m_ui->aAddRecord );
-    as.addAction( aRemoveRecord, m_ui->aRemoveRecord );
-    as.addAction( aAddRadiograph, m_ui->aRemoveRadiograph );
-    as.addAction( aRemoveRadiograph, m_ui->aRemoveRadiograph );
-    as.addAction( aNextRadiograph, m_ui->aNextRadiograph );
-    as.addAction( aPrevRadiograph, m_ui->aPrevRadiograph );
-
     loadSettings();
     m_ui->setupUi( this );
+
+    ActionStore::addAction( aAddPatient, m_ui->aAddPatient );
+    ActionStore::addAction( aRemovePatient, m_ui->aRemovePatient) ;
+    ActionStore::addAction( aAddRecord, m_ui->aAddRecord );
+    ActionStore::addAction( aRemoveRecord, m_ui->aRemoveRecord );
+    ActionStore::addAction( aAddRadiograph, m_ui->aRemoveRadiograph );
+    ActionStore::addAction( aRemoveRadiograph, m_ui->aRemoveRadiograph );
+    ActionStore::addAction( aNextRadiograph, m_ui->aNextRadiograph );
+    ActionStore::addAction( aPrevRadiograph, m_ui->aPrevRadiograph );
+
     m_db = QSqlDatabase::addDatabase( "QSQLITE" );
     m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
     qDebug() << QCoreApplication::applicationDirPath();
@@ -30,13 +30,9 @@ MainWindow::MainWindow( QWidget *parent )
     m_patientsModel->setTable( "Patients" );
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
-    if( m_ui->aAddPatient == as.action( aAddPatient ) )
-    {
-        qDebug() << "whyyy";
-    }
 
-    //connect( as.action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
-    //connect( as.action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
+    connect( ActionStore::action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
+    connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
 
     //db sort
@@ -91,8 +87,6 @@ void MainWindow::onRemovePatient()
         m_patientsModel->removeRow( currentIndex.row() );
         m_patientsModel->submitAll();
         m_patientsModel->select();
-        m_recordsModel->select();
-        m_radiographsModel->select();
         qDebug() << "Removed patient with ID:" << id;
     }
 }
@@ -136,7 +130,6 @@ void MainWindow::loadSettings()
     //here we load settings
     QSettings settings( QStandardPaths::displayName (QStandardPaths::AppDataLocation) + "/hospital.ini",
                         QSettings::IniFormat );
-    //QSettings settings( QSettings::IniFormat, QSettings::UserScope,"NIX Solutions", "Hospital" );
     settings.beginGroup( "MainWindow" );
     QString lang = settings.value( "language", "en" ).toString();
     lm.loadLanguage(lang);

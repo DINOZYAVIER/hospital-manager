@@ -18,16 +18,11 @@ typedef enum {
 class ActionStore
 {
 public:
-
-    static ActionStore& get_instance() { static ActionStore as; return as; }
-    void addAction( ActionID id, QAction* action );
-    QAction* action( ActionID id ) const;
-protected:
-    ActionStore() { }
-    ActionStore& operator=( ActionStore& );
-    ~ActionStore() { }
+    ActionStore() = delete;
+    static void addAction( ActionID id, QAction* action );
+    static QAction* action( ActionID id );
 private:
-       QMap<ActionID, QAction*> m_actions;
+    static QMap<ActionID, QAction*> m_actions;
 };
 
 #endif // ACTIONSTORE_H

@@ -1,6 +1,8 @@
+#include "precompiled.h"
 #include "radiographwidget.h"
 #include "ui_radiographwidget.h"
 
+//extern ActionStore& as;
 
 RadiographWidget::RadiographWidget( QWidget *parent ) :
     QWidget( parent ),

@@ -1,6 +1,6 @@
+#include "precompiled.h"
 #include "addrecorddialog.h"
 #include "ui_addrecorddialog.h"
-#include "precompiled.h"
 
 AddRecordDialog::AddRecordDialog(QWidget *parent) :
     QDialog(parent),

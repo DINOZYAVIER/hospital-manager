@@ -1,6 +1,6 @@
+#include "precompiled.h"
 #include "patientrecordwidget.h"
 #include "ui_patientrecordwidget.h"
-
 
 PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
     QWidget( parent ),
@@ -14,11 +14,10 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
    m_ui->recordTable->setModel( m_recordsModel );
    m_ui->recordTable->hideColumn(4);
 
-   /*ActionStore& as = ActionStore::get_instance();
-   connect( as.action( aAddRecord ), &QAction::triggered, this, &PatientRecordWidget::onAddRecord );
-   connect( as.action( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
+   connect( ActionStore::action( aAddRecord ), &QAction::triggered, this, &PatientRecordWidget::onAddRecord );
+   //connect( ActionStore::instance().action( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
    connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
-   connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );*/
+   connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );/**/
 }
 
 PatientRecordWidget::~PatientRecordWidget()
