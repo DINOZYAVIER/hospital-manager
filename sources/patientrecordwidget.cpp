@@ -14,6 +14,7 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
    m_ui->recordTable->setModel( m_recordsModel );
    m_ui->recordTable->hideColumn(4);
 
+   qDebug() << ActionStore::action( aAddPatient);
    //connect( ActionStore::action( aAddRecord ), &QAction::triggered, this, &PatientRecordWidget::onAddRecord );
    //connect( ActionStore::( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
    connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );

@@ -6,10 +6,10 @@
 class LanguageManager
 {
 public:
-    static LanguageManager& get_instance();
+    static LanguageManager& instance();
     void loadLanguage( const QString& langCode );
     void SwitchTranslator( const QString& langCode );
-    QString getCurLang() { return m_curLang; }
+    QString CurLang() { return m_curLang; }
     ~LanguageManager() { delete p_instance; }
 private:
     static LanguageManager* p_instance;

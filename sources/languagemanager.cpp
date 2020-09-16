@@ -3,7 +3,7 @@
 
 LanguageManager * LanguageManager::p_instance = 0;
 
-LanguageManager& LanguageManager::get_instance()
+LanguageManager& LanguageManager::instance()
 {
     static LanguageManager *p_instance = new LanguageManager();
     return *p_instance;

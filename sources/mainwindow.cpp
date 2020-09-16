@@ -2,7 +2,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-LanguageManager &lm = LanguageManager::get_instance();
+LanguageManager &lm = LanguageManager::instance();
 
 MainWindow::MainWindow( QWidget *parent )
     : QMainWindow( parent )
@@ -135,7 +135,7 @@ void MainWindow::loadSettings()
                         QSettings::IniFormat );
     settings.beginGroup( "MainWindow" );
     QString lang = settings.value( "language", "en" ).toString();
-    lm.loadLanguage(lang);
+    lm.loadLanguage( lang );
     settings.endGroup();
 }
 void MainWindow::saveSettings()
@@ -144,7 +144,7 @@ void MainWindow::saveSettings()
     QSettings settings( QStandardPaths::displayName (QStandardPaths::AppDataLocation) + "/hospital.ini",
                         QSettings::IniFormat);
     settings.beginGroup( "MainWindow" );
-    settings.setValue( "language", lm.getCurLang() );
+    settings.setValue( "language", lm.CurLang() );
     settings.endGroup();
 }
 
