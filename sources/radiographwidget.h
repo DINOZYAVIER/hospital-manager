@@ -26,6 +26,7 @@ public:
     explicit RadiographWidget(QWidget *parent = nullptr);
     ~RadiographWidget();
 
+    void setAction();
     void displayClear();
 Q_SIGNALS:
     void displayRadiographsSignal( QVariant id );

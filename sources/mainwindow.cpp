@@ -9,6 +9,10 @@ MainWindow::MainWindow( QWidget *parent )
     , m_ui( new Ui::MainWindow )
 {
     loadSettings();
+    m_db = QSqlDatabase::addDatabase( "QSQLITE" );
+    m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
+    m_db.open();
+    m_db.exec( "PRAGMA foreign_keys = ON" );
     m_ui->setupUi( this );
 
     ActionStore::addAction( aAddPatient, m_ui->aAddPatient );
@@ -20,19 +24,10 @@ MainWindow::MainWindow( QWidget *parent )
     ActionStore::addAction( aNextRadiograph, m_ui->aNextRadiograph );
     ActionStore::addAction( aPrevRadiograph, m_ui->aPrevRadiograph );
 
-    m_db = QSqlDatabase::addDatabase( "QSQLITE" );
-    m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
-    qDebug() << QCoreApplication::applicationDirPath();
-    m_db.open();
-    m_db.exec( "PRAGMA foreign_keys = ON" );
-
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
-
-    if( m_ui->aAddRecord == ActionStore::action( aAddRecord ))
-        qDebug() << "why";
 
     connect( ActionStore::action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
@@ -51,7 +46,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_ui->aRussian->setCheckable( true );
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
 
-    emit m_ui->recordsWidget->displayRecordsSignal( 0 );
+    emit m_ui->recordsWidget->displayRecordsSignal( m_patientsModel->record( 0 ).field( 0 ).value().toInt() );
 }
 
 MainWindow::~MainWindow()
@@ -68,8 +63,6 @@ void MainWindow::onAddPatient()
     dial.exec();
 
     QVariant* data = dial.getData();
-    qDebug() << data[0] << data[1] << data[2];
-
     QSqlRecord record( m_patientsModel->record() );
     record.setValue( 0, QVariant() );
     record.setValue( 1, data[0] );

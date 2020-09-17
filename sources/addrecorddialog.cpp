@@ -21,7 +21,6 @@ void AddRecordDialog::onSubmitRecord()
     m_data[0] = m_ui->textEditDescription->toPlainText();
     m_data[1] = m_ui->textEditDateIn->toPlainText();
     m_data[2] = m_ui->textEditDateOut->toPlainText();
-    qDebug() << m_data[0] << m_data[1] << m_data[2];
     this->close();
 }
 

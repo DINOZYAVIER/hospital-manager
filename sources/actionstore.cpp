@@ -5,8 +5,7 @@ QMap<ActionID, QAction*> ActionStore::m_actions = QMap<ActionID, QAction*>();
 
 void ActionStore::addAction( ActionID id, QAction * action )
 {
-    m_actions.insert( id, action );
-    //m_actions[ id ] = action;
+    m_actions[ id ] = action;
 }
 
 QAction* ActionStore::action( ActionID id )

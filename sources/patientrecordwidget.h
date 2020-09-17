@@ -24,6 +24,8 @@ class PatientRecordWidget : public QWidget
 public:
     explicit PatientRecordWidget(QWidget *parent = nullptr);
     ~PatientRecordWidget();
+
+    void setAction();
 Q_SIGNALS:
     void addRecordSignal( int id );
     void removeRecordSignal();
