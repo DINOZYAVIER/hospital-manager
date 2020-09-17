@@ -12,7 +12,7 @@
 #include <QSqlField>
 #include <QAction>
 #include <QFileDialog>
-//#include <addradiographdialog.h>
+#include "actionstore.h"
 
 namespace Ui {
 class RadiographWidget;
@@ -26,17 +26,12 @@ public:
     explicit RadiographWidget(QWidget *parent = nullptr);
     ~RadiographWidget();
 
+    void setAction();
     void displayClear();
 Q_SIGNALS:
-    void constructSignal( QSqlDatabase db );
-    void addRadiographSignal( int id );
-    void removeRadiographSignal();
     void displayRadiographsSignal( QVariant id );
-    void nextRadiographSignal();
-    void prevRadiographSignal();
     void recordClickedSignal( int id );
 private Q_SLOTS:
-    void onConstruct( QSqlDatabase db );
     void onRecordClicked( int id );
     void onAddRadiograph();
     void onRemoveRadiograph();
