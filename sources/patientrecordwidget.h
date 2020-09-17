@@ -1,16 +1,8 @@
 #ifndef PATIENTRECORDWIDGET_H
 #define PATIENTRECORDWIDGET_H
 
-#include <QWidget>
-#include <QDebug>
 #include <QSqlDatabase>
-#include <QSqlTableModel>
-#include <QTableView>
-#include <QSqlTableModel>
-#include <QSqlDatabase>
-#include <QSqlRecord>
 #include <QSqlRelationalTableModel>
-#include "mainwindow.h"
 #include "addrecorddialog.h"
 #include "actionstore.h"
 

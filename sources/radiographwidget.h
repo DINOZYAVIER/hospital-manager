@@ -1,17 +1,8 @@
 #ifndef RADIOGRAPHWIDGET_H
 #define RADIOGRAPHWIDGET_H
 
-#include <QWidget>
-#include <QDebug>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
-#include <QTableView>
-#include <QSqlTableModel>
-#include <QSqlDatabase>
-#include <QSqlRecord>
-#include <QSqlField>
-#include <QAction>
-#include <QFileDialog>
 #include "actionstore.h"
 
 namespace Ui {

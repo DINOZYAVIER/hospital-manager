@@ -13,12 +13,18 @@
 #include <QSqlRecord>
 #include <QSqlField>
 #include <QSqlQuery>
+#include <QSqlRelationalTableModel>
 #include <QHeaderView>
 #include <QDebug>
 #include <QItemDelegate>
 #include <QTranslator>
 #include <QInputDialog>
 #include <QDateTime>
+#include <QFileDialog>
+#include <QStandardPaths>
+#include <QSettings>
+#include <QDialog>
+
 #endif // __cplusplus
 
 #endif // PRECOMPILED_H

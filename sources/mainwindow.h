@@ -4,11 +4,7 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlTableModel>
-#include <QTranslator>
-#include <QLocale>
 #include <QActionGroup>
-#include <QSettings>
-#include <QStandardPaths>
 #include "addpatientdialog.h"
 #include "patientrecordwidget.h"
 #include "radiographwidget.h"
@@ -41,8 +37,6 @@ private:
     Ui::MainWindow* m_ui;
     QSqlDatabase    m_db;
     QSqlTableModel* m_patientsModel;
-    QSqlTableModel* m_recordsModel;
-    QSqlTableModel* m_radiographsModel;
     QActionGroup* m_langGroup;
 };
 

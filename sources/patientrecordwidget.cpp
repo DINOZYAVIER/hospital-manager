@@ -6,16 +6,16 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
     QWidget( parent ),
     m_ui( new Ui::PatientRecordWidget )
 {
-   m_ui->setupUi( this );
+    m_ui->setupUi( this );
 
-   m_recordsModel = new QSqlTableModel( this );
-   m_recordsModel->setTable( "ClinicalRecords" );
-   m_recordsModel->select();
-   m_ui->recordTable->setModel( m_recordsModel );
-   //m_ui->recordTable->hideColumn(4);
+    m_recordsModel = new QSqlRelationalTableModel( this );
+    m_recordsModel->setTable( "ClinicalRecords" );
+    m_recordsModel->select();
+    m_ui->recordTable->setModel( m_recordsModel );
+    m_recordsModel->setRelation(4, QSqlRelation( "Patients", "id", "Full_name") );
 
-   connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
-   connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );
+    connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
+    connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );
 
 }
 
