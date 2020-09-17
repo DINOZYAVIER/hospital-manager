@@ -12,7 +12,7 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
     m_recordsModel->setTable( "ClinicalRecords" );
     m_recordsModel->select();
     m_ui->recordTable->setModel( m_recordsModel );
-    m_recordsModel->setRelation(4, QSqlRelation( "Patients", "id", "Full_name") );
+    m_recordsModel->setRelation( 4, QSqlRelation( "Patients", "id", "Full_name") );
 
     connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
     connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );
@@ -28,7 +28,7 @@ void PatientRecordWidget::onAddRecord( int id )
 {
     qDebug() << "hello";
     AddRecordDialog dialogWnd;
-    dialogWnd.setModal(true);
+    dialogWnd.setModal( true );
     if( dialogWnd.exec() == QDialog::Accepted )
     {
         QVariant* data = dialogWnd.getData();

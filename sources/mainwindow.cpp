@@ -46,6 +46,7 @@ MainWindow::MainWindow( QWidget *parent )
     m_ui->aRussian->setCheckable( true );
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
 
+    m_ui->recordsWidget->setAction();
     emit m_ui->recordsWidget->displayRecordsSignal( m_patientsModel->record( 0 ).field( 0 ).value().toInt() );
 }
 

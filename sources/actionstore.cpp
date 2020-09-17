@@ -10,7 +10,7 @@ void ActionStore::addAction( ActionID id, QAction * action )
 
 QAction* ActionStore::action( ActionID id )
 {
-   Q_ASSERT( m_actions.contains( id ) );
-       return m_actions.value( id );
+    Q_ASSERT( m_actions.contains( id ) );
+    return m_actions.value( id );
 }
 
