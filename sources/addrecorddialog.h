@@ -19,7 +19,7 @@ public:
     QVariant* getData() { return m_data; }
 
 private Q_SLOTS:
-    void onSubmitRecord();
+    void onTextChanged();
 
 private:
     Ui::AddRecordDialog *m_ui;

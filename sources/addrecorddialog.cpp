@@ -7,8 +7,12 @@ AddRecordDialog::AddRecordDialog(QWidget *parent) :
     m_ui(new Ui::AddRecordDialog)
 {
     m_ui->setupUi(this);
-    connect( m_ui->submitButton, &QAbstractButton::clicked, this, &AddRecordDialog::onSubmitRecord );
+    connect( m_ui->submitButton, &QAbstractButton::clicked, this, &QDialog::accept );
     connect( m_ui->cancelButton, &QAbstractButton::clicked, this, &QDialog::close );
+
+    connect( m_ui->textEditDateIn, &QTextEdit::textChanged, this, &AddRecordDialog::onTextChanged );
+    connect( m_ui->textEditDateOut, &QTextEdit::textChanged, this, &AddRecordDialog::onTextChanged );
+    connect( m_ui->textEditDescription, &QTextEdit::textChanged, this, &AddRecordDialog::onTextChanged );
 }
 
 AddRecordDialog::~AddRecordDialog()
@@ -16,7 +20,7 @@ AddRecordDialog::~AddRecordDialog()
     delete m_ui;
 }
 
-void AddRecordDialog::onSubmitRecord()
+void AddRecordDialog::onTextChanged()
 {
     m_data[0] = m_ui->textEditDescription->toPlainText();
     m_data[1] = m_ui->textEditDateIn->toPlainText();

@@ -58,20 +58,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::onAddPatient()
 {
-    AddPatientDialog dial;
-    dial.setModal(true);
-    dial.exec();
-
-    QVariant* data = dial.getData();
-    QSqlRecord record( m_patientsModel->record() );
-    record.setValue( 0, QVariant() );
-    record.setValue( 1, data[0] );
-    record.setValue( 2, data[1] );
-    record.setValue( 3, data[2] );
-    m_patientsModel->insertRecord( -1, record );
-    m_patientsModel->submitAll();
-    m_patientsModel->select();
-    qDebug() << "Added patient with ID:" << m_patientsModel->record( m_patientsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    AddPatientDialog dialogWnd;
+    dialogWnd.setModal(true);
+    if( dialogWnd.exec() == QDialog::Accepted )
+    {
+        QVariant* data = dialogWnd.getData();
+        QSqlRecord record( m_patientsModel->record() );
+        record.setValue( 0, QVariant() );
+        record.setValue( 1, data[0] );
+        record.setValue( 2, data[1] );
+        record.setValue( 3, data[2] );
+        m_patientsModel->insertRecord( -1, record );
+        m_patientsModel->submitAll();
+        m_patientsModel->select();
+        qDebug() << "Added patient with ID:" << m_patientsModel->record( m_patientsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    }
 }
 
 void MainWindow::onRemovePatient()

@@ -26,21 +26,23 @@ PatientRecordWidget::~PatientRecordWidget()
 
 void PatientRecordWidget::onAddRecord( int id )
 {
-    AddRecordDialog dial;
-    dial.setModal(true);
-    dial.exec();
-    QVariant* data = dial.getData();
-
-    QSqlRecord record( m_recordsModel->record() );
-    record.setValue( 0, QVariant() );
-    record.setValue( 1, data[0] );
-    record.setValue( 2, data[1] );
-    record.setValue( 3, data[2] );
-    record.setValue( 4, id );
-    m_recordsModel->insertRecord( -1, record );
-    m_recordsModel->submitAll();
-    m_recordsModel->select();
-    qDebug() << "Added record with ID:" << m_recordsModel->record( m_recordsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    qDebug() << "hello";
+    AddRecordDialog dialogWnd;
+    dialogWnd.setModal(true);
+    if( dialogWnd.exec() == QDialog::Accepted )
+    {
+        QVariant* data = dialogWnd.getData();
+        QSqlRecord record( m_recordsModel->record() );
+        record.setValue( 0, QVariant() );
+        record.setValue( 1, data[0] );
+        record.setValue( 2, data[1] );
+        record.setValue( 3, data[2] );
+        record.setValue( 4, id );
+        m_recordsModel->insertRecord( -1, record );
+        m_recordsModel->submitAll();
+        m_recordsModel->select();
+        qDebug() << "Added record with ID:" << m_recordsModel->record( m_recordsModel->rowCount() - 1 ).field( 0 ).value().toInt();
+    }
 }
 
 void PatientRecordWidget::onRemoveRecord()

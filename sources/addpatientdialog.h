@@ -19,7 +19,7 @@ public:
     QVariant* getData() { return m_data; }
 
 private Q_SLOTS:
-    void onSubmitPatient();
+    void onTextChanged();
 
 private:
     Ui::AddPatientDialog *m_ui;
