@@ -9,6 +9,7 @@
 #include <QSqlTableModel>
 #include <QSqlDatabase>
 #include <QSqlRecord>
+#include <QSqlRelationalTableModel>
 #include "mainwindow.h"
 #include "addrecorddialog.h"
 #include "actionstore.h"
@@ -40,7 +41,7 @@ private Q_SLOTS:
 private:
     Ui::PatientRecordWidget *m_ui;
     QSqlDatabase m_db;
-    QSqlTableModel *m_recordsModel;
+    QSqlRelationalTableModel *m_recordsModel;
 };
 
 #endif // PATIENTRECORDWIDGET_H
