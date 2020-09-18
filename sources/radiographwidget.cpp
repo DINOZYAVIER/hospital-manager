@@ -14,11 +14,9 @@ RadiographWidget::RadiographWidget( QWidget *parent ) :
     m_radiographsModel->setTable( "Radiographs" );
     m_radiographsModel->select();
 
-
     connect( this, &RadiographWidget::displayRadiographsSignal, this, &RadiographWidget::onDisplayRadiograph );
     connect( m_ui->DescriptionEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
     connect( m_ui->DateEdit, &QTextEdit::textChanged, this, &RadiographWidget::onUpdateInfo );
-    connect( this, &RadiographWidget::recordClickedSignal, this, &RadiographWidget::onRecordClicked );
     connect( m_ui->addRadiographButton, &QAbstractButton::clicked, this, &RadiographWidget::onAddRadiograph );
 }
 
@@ -31,6 +29,7 @@ void RadiographWidget::onAddRadiograph()
 {
     if( m_current_id >= 0 )
     {
+        ++m_current_radiograph;
         QString fileName = QFileDialog::getOpenFileName( this,
             tr( "Open Image" ), QCoreApplication::applicationDirPath(), tr( "Image Files (*.png *.jpg *.bmp)" ) );
 
@@ -67,8 +66,9 @@ void RadiographWidget::onRemoveRadiograph()
 
 void RadiographWidget::onDisplayRadiograph( QVariant id )
 {
+    m_current_id = id.toInt();
     m_current_radiograph = 0;
-    m_radiographsModel->setFilter("RecordID='" + id.toString() + "'");
+    m_radiographsModel->setFilter( "RecordID='" + id.toString() + "'");
 
     if( m_radiographsModel->rowCount() > 0)
     {
@@ -80,12 +80,13 @@ void RadiographWidget::onDisplayRadiograph( QVariant id )
         QPixmap mpixmap = QPixmap();
         if( mpixmap.loadFromData( data ))
         {
-            qDebug() << "Radiograph number:" << m_current_radiograph + 1 << "with record number:" << id.toInt();
+            qDebug() << "Radiograph number" << m_current_radiograph << "with record ID:" << id.toInt();
             m_ui->imageLabel->setPixmap(( mpixmap ));
         }
     }
     else
         displayClear();
+    checkActions();
 }
 
 void RadiographWidget::onDisplayNext()
@@ -99,7 +100,10 @@ void RadiographWidget::onDisplayNext()
         QPixmap mpixmap = QPixmap();
         if( mpixmap.loadFromData( data ))
             m_ui->imageLabel->setPixmap(( mpixmap ));
+        else
+            m_ui->imageLabel->setPixmap(( QPixmap() ));
     }
+    checkActions();
 }
 
 void RadiographWidget::onDisplayPrev()
@@ -113,7 +117,10 @@ void RadiographWidget::onDisplayPrev()
         QPixmap mpixmap = QPixmap();
         if( mpixmap.loadFromData( data ))
             m_ui->imageLabel->setPixmap(( mpixmap ));
+        else
+            m_ui->imageLabel->setPixmap(( QPixmap() ));
     }
+    checkActions();
 }
 
 void RadiographWidget::onUpdateInfo()
@@ -138,14 +145,21 @@ void RadiographWidget::displayClear()
     m_current_radiograph = -1;
 }
 
-void RadiographWidget::onRecordClicked( int id )
-{
-     m_current_id = id;
-}
-
 void RadiographWidget::setAction()
 {
-    connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &RadiographWidget::onRemoveRadiograph );
-    connect( ActionStore::action( aPrevRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayNext );
-    connect( ActionStore::action( aNextRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayPrev );
+    connect( ActionStore::action( aRemoveRadiograph ), &QAction::triggered, this, &RadiographWidget::onRemoveRadiograph );
+    connect( ActionStore::action( aNextRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayNext );
+    connect( ActionStore::action( aPrevRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayPrev );
+}
+
+void RadiographWidget::checkActions()
+{
+    if( m_current_radiograph == 0 )
+        ActionStore::action( aPrevRadiograph )->setEnabled( false );
+    else
+        ActionStore::action( aPrevRadiograph )->setEnabled( true );
+    if( m_current_radiograph ==  m_radiographsModel->rowCount() - 1 )
+        ActionStore::action( aNextRadiograph )->setEnabled( false );
+    else
+        ActionStore::action( aNextRadiograph )->setEnabled( true );
 }

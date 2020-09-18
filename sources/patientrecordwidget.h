@@ -20,8 +20,6 @@ public:
 
     void setAction();
 Q_SIGNALS:
-    void addRecordSignal( int id );
-    void removeRecordSignal();
     void displayRecordsSignal( QVariant id );
 
 private Q_SLOTS:
@@ -29,7 +27,6 @@ private Q_SLOTS:
     void onRemoveRecord();
     void onDisplayRecords( QVariant id);
     void onDisplayRadiographs();
-
 private:
     Ui::PatientRecordWidget *m_ui;
     QSqlDatabase m_db;

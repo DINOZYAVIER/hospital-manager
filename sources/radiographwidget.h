@@ -18,12 +18,13 @@ public:
     ~RadiographWidget();
 
     void setAction();
+    void setCurrentID( QVariant id ) { m_current_id = id.toInt(); }
     void displayClear();
+    void checkActions();
 Q_SIGNALS:
     void displayRadiographsSignal( QVariant id );
     void recordClickedSignal( int id );
 private Q_SLOTS:
-    void onRecordClicked( int id );
     void onAddRadiograph();
     void onRemoveRadiograph();
     void onDisplayRadiograph( QVariant id );
@@ -32,7 +33,6 @@ private Q_SLOTS:
     void onUpdateInfo();
 private:
     Ui::RadiographWidget *m_ui;
-    QSqlDatabase m_db;
     QSqlTableModel* m_radiographsModel;
     int m_current_id;
     int m_current_radiograph;

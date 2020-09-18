@@ -16,7 +16,6 @@ PatientRecordWidget::PatientRecordWidget( QWidget *parent ) :
 
     connect( this, &PatientRecordWidget::displayRecordsSignal, this, &PatientRecordWidget::onDisplayRecords );
     connect( m_ui->recordTable, &QTableView::clicked, this, &PatientRecordWidget::onDisplayRadiographs );
-
 }
 
 PatientRecordWidget::~PatientRecordWidget()
@@ -55,6 +54,7 @@ void PatientRecordWidget::onRemoveRecord()
         m_recordsModel->submitAll();
         m_recordsModel->select();
         qDebug() << "Removed record with ID:" << id;
+        m_ui->radiographsWidget->displayClear();
     }
 }
 
@@ -66,13 +66,11 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
 
 void PatientRecordWidget::onDisplayRadiographs()
 {
+    qDebug() << "hello";
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
-    {
-        emit m_ui->radiographsWidget->recordClickedSignal( id.toInt() );
         emit m_ui->radiographsWidget->displayRadiographsSignal( id );
-    }
 }
 
 void PatientRecordWidget::setAction()
@@ -81,3 +79,4 @@ void PatientRecordWidget::setAction()
     connect( ActionStore::action( aRemoveRecord ), &QAction::triggered, this, &PatientRecordWidget::onRemoveRecord );
     m_ui->radiographsWidget->setAction();
 }
+

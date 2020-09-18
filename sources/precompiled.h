@@ -17,6 +17,7 @@
 #include <QHeaderView>
 #include <QDebug>
 #include <QItemDelegate>
+#include <QItemSelectionModel>
 #include <QTranslator>
 #include <QInputDialog>
 #include <QDateTime>
