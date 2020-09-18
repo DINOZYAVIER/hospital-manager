@@ -11,9 +11,9 @@ AddPatientDialog::AddPatientDialog(QWidget *parent) :
     connect( m_ui->submitButton, &QAbstractButton::clicked, this, &QDialog::accept );
     connect( m_ui->cancelButton, &QAbstractButton::clicked, this, &QDialog::close );
 
-    connect( m_ui->textEditAddress, &QTextEdit::textChanged, this, &AddPatientDialog::onTextChanged );
-    connect( m_ui->textEditBirthday, &QTextEdit::textChanged, this, &AddPatientDialog::onTextChanged );
-    connect( m_ui->textEditName, &QTextEdit::textChanged, this, &AddPatientDialog::onTextChanged );
+    connect( m_ui->lineEditAddress, &QLineEdit::textChanged, this, &AddPatientDialog::onTextChanged );
+    connect( m_ui->dateEditBirthday, &QDateEdit::dateChanged, this, &AddPatientDialog::onTextChanged );
+    connect( m_ui->lineEditName, &QLineEdit::textChanged, this, &AddPatientDialog::onTextChanged );
 }
 
 AddPatientDialog::~AddPatientDialog()
@@ -23,9 +23,9 @@ AddPatientDialog::~AddPatientDialog()
 
 void AddPatientDialog::onTextChanged()
 {
-    m_data[0] = m_ui->textEditName->toPlainText();
-    m_data[1] = m_ui->textEditBirthday->toPlainText();
-    m_data[2] = m_ui->textEditAddress->toPlainText();
+    m_data[0] = m_ui->lineEditName->text();
+    m_data[1] = m_ui->dateEditBirthday->text();
+    m_data[2] = m_ui->lineEditAddress->text();
 }
 
 

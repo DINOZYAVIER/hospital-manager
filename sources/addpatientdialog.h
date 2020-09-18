@@ -16,8 +16,9 @@ public:
     explicit AddPatientDialog(QWidget *parent = nullptr);
     ~AddPatientDialog();
 
-    QVariant* getData() { return m_data; }
-
+    QString name() { return m_data[0].toString(); }
+    QString date() { return m_data[1].toString(); }
+    QString address() { return m_data[2].toString(); }
 private Q_SLOTS:
     void onTextChanged();
 

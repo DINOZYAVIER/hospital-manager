@@ -19,48 +19,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTextEdit" name="textEditName">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>60</y>
-     <width>191</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEditBirthday">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>110</y>
-     <width>191</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEditAddress">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>160</y>
-     <width>191</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -126,12 +84,37 @@
     <string>Cancel</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEditName">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>60</y>
+     <width>191</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEditBirthday">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>110</y>
+     <width>191</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditAddress">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>160</y>
+     <width>191</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
- <tabstops>
-  <tabstop>textEditName</tabstop>
-  <tabstop>textEditBirthday</tabstop>
-  <tabstop>textEditAddress</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

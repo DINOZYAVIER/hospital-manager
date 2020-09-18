@@ -68,15 +68,16 @@ MainWindow::~MainWindow()
 void MainWindow::onAddPatient()
 {
     AddPatientDialog dialogWnd;
+    dialogWnd.setWindowTitle( "Add patient" );
     dialogWnd.setModal(true);
     if( dialogWnd.exec() == QDialog::Accepted )
     {
-        QVariant* data = dialogWnd.getData();
+        //QVariant* data = dialogWnd.getData();
         QSqlRecord record( m_patientsModel->record() );
         record.setValue( 0, QVariant() );
-        record.setValue( 1, data[0] );
-        record.setValue( 2, data[1] );
-        record.setValue( 3, data[2] );
+        record.setValue( 1, dialogWnd.name() );
+        record.setValue( 2, dialogWnd.date() );
+        record.setValue( 3, dialogWnd.address() );
         m_patientsModel->insertRecord( -1, record );
         m_patientsModel->submitAll();
         m_patientsModel->select();
@@ -99,7 +100,7 @@ void MainWindow::onRemovePatient()
 
 void MainWindow::onDisplayRecords()
 {
-    ActionStore::action( aAddRecord )->setEnabled( false );
+    ActionStore::action( aAddRecord )->setEnabled( true );
     ActionStore::action( aRemoveRecord )->setEnabled( false );
     ActionStore::action( aAddRadiograph )->setEnabled( false );
     ActionStore::action( aRemoveRadiograph )->setEnabled( false );

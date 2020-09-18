@@ -27,15 +27,15 @@ void PatientRecordWidget::onAddRecord( int id )
 {
     qDebug() << "hello";
     AddRecordDialog dialogWnd;
+    dialogWnd.setWindowTitle( "Add record" );
     dialogWnd.setModal( true );
     if( dialogWnd.exec() == QDialog::Accepted )
     {
-        QVariant* data = dialogWnd.getData();
         QSqlRecord record( m_recordsModel->record() );
         record.setValue( 0, QVariant() );
-        record.setValue( 1, data[0] );
-        record.setValue( 2, data[1] );
-        record.setValue( 3, data[2] );
+        record.setValue( 1, dialogWnd.description() );
+        record.setValue( 2, dialogWnd.dateIn() );
+        record.setValue( 3, dialogWnd.dateOut() );
         record.setValue( 4, id );
         m_recordsModel->insertRecord( -1, record );
         m_recordsModel->submitAll();
@@ -66,8 +66,6 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
 
 void PatientRecordWidget::onDisplayRadiographs()
 {
-
-    qDebug() << "hello";
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
