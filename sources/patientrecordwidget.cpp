@@ -94,3 +94,19 @@ void PatientRecordWidget::setAction()
     m_ui->radiographsWidget->setAction();
 }
 
+void PatientRecordWidget::openDB()
+{
+    m_recordsModel->setTable( "ClinicalRecords" );
+    m_recordsModel->select();
+    m_ui->recordTable->setModel( m_recordsModel );
+    m_recordsModel->setRelation( 4, QSqlRelation( "Patients", "id", "Full_name") );
+    m_ui->radiographsWidget->openDB();
+}
+
+void PatientRecordWidget::closeDB()
+{
+    m_recordsModel->clear();
+    m_ui->radiographsWidget->closeDB();
+}
+
+

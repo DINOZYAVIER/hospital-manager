@@ -22,6 +22,8 @@ public:
     void displayClear();
     void checkActions();
     void onDisplay( int current_radiograph );
+    void openDB();
+    void closeDB();
 Q_SIGNALS:
     void displayRadiographsSignal( QVariant id );
     void recordClickedSignal( int id );

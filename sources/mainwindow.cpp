@@ -11,8 +11,8 @@ MainWindow::MainWindow( QWidget *parent )
     loadSettings();
     m_db = QSqlDatabase::addDatabase( "QSQLITE" );
     m_db.setDatabaseName( QCoreApplication::applicationDirPath() + "/HospitalDB.db" );
-    m_db.open();
-    m_db.exec( "PRAGMA foreign_keys = ON" );
+    if( m_db.open() )
+        m_db.exec( "PRAGMA foreign_keys = ON" );
     m_ui->setupUi( this );
 
     ActionStore::addAction( aAddPatient, m_ui->aAddPatient );
@@ -37,6 +37,8 @@ MainWindow::MainWindow( QWidget *parent )
     m_patientsModel->select();
     m_ui->patientTable->setModel( m_patientsModel );
 
+    connect( m_ui->aOpenDB, &QAction::triggered, this, &MainWindow::onOpenDB );
+    connect( m_ui->aCloseDB, &QAction::triggered, this, &MainWindow::onCloseDB );
     connect( ActionStore::action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
@@ -159,4 +161,37 @@ void MainWindow::saveSettings()
     settings.endGroup();
 }
 
+void MainWindow::onOpenDB()
+{
+    QString fileName = QFileDialog::getOpenFileName( this,
+        tr( "Open DB" ), QCoreApplication::applicationDirPath(), tr( "*db" ) );
+    m_db.setDatabaseName( fileName );
+    if( m_db.open() )
+    {
+        m_db.exec( "PRAGMA foreign_keys = ON" );
+        m_patientsModel->setTable( "Patients" );
+        m_patientsModel->select();
+        m_ui->patientTable->setModel( m_patientsModel );
+        ActionStore::action( aAddPatient )->setEnabled( true );
+        ActionStore::action( aRemovePatient )->setEnabled( true );
+        m_ui->recordsWidget->openDB();
+    }
+    else
+        qDebug() << "DB not found";
+}
 
+void MainWindow::onCloseDB()
+{
+     m_db.close();
+
+     ActionStore::action( aAddPatient )->setEnabled( false );
+     ActionStore::action( aRemovePatient )->setEnabled( false );
+     ActionStore::action( aAddRecord )->setEnabled( false );
+     ActionStore::action( aRemoveRecord )->setEnabled( false );
+     ActionStore::action( aAddRadiograph )->setEnabled( false );
+     ActionStore::action( aRemoveRadiograph )->setEnabled( false );
+     ActionStore::action( aNextRadiograph )->setEnabled( false );
+     ActionStore::action( aPrevRadiograph )->setEnabled( false );
+     m_patientsModel->clear();
+     m_ui->recordsWidget->closeDB();
+}

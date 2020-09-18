@@ -6,116 +6,125 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>616</width>
-    <height>294</height>
+    <width>617</width>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
-   <item>
-    <widget class="QLabel" name="imageLabel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="Radiograph">
+     <property name="title">
+      <string>Radiograph</string>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>304</width>
-       <height>270</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>304</width>
-       <height>270</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="imageLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>304</width>
+          <height>270</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>304</width>
+          <height>270</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="DateLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Date</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="DateEdit">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="DescriptionLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="DescriptionEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="addRadiographButton">
+          <property name="text">
+           <string>Add radiograph</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetFixedSize</enum>
-     </property>
-     <item>
-      <widget class="QLabel" name="DateLabel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Date</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="DateEdit">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="DescriptionLabel">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Description</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="DescriptionEdit">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>100</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="addRadiographButton">
-       <property name="text">
-        <string>Add radiograph</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

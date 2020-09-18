@@ -185,3 +185,14 @@ void RadiographWidget::onDisplay( int current_radiograph)
     else
         m_ui->imageLabel->setPixmap(( QPixmap() ));
 }
+
+void RadiographWidget::openDB()
+{
+    m_radiographsModel->setTable( "Radiographs" );
+    m_radiographsModel->select();
+}
+
+void RadiographWidget::closeDB()
+{
+    m_radiographsModel->clear();
+}

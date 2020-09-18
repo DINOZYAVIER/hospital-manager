@@ -18,6 +18,8 @@ public:
     ~PatientRecordWidget();
 
     void setAction();
+    void openDB();
+    void closeDB();
 Q_SIGNALS:
     void displayRecordsSignal( QVariant id );
 

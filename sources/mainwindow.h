@@ -31,6 +31,8 @@ private Q_SLOTS:
     void onRemovePatient();
     void onDisplayRecords();
     void sortPatients( int index, Qt::SortOrder order );
+    void onOpenDB();
+    void onCloseDB();
     void languageChange();
 
 private:
