@@ -1,7 +1,6 @@
 #ifndef PATIENTRECORDWIDGET_H
 #define PATIENTRECORDWIDGET_H
 
-#include <QSqlDatabase>
 #include <QSqlRelationalTableModel>
 #include "addrecorddialog.h"
 #include "actionstore.h"
@@ -29,7 +28,6 @@ private Q_SLOTS:
     void onDisplayRadiographs();
 private:
     Ui::PatientRecordWidget *m_ui;
-    QSqlDatabase m_db;
     QSqlRelationalTableModel *m_recordsModel;
 };
 
