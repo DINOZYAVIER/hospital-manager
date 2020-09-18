@@ -25,6 +25,5 @@ void AddRecordDialog::onTextChanged()
     m_data[0] = m_ui->textEditDescription->toPlainText();
     m_data[1] = m_ui->dateEditDateIn->text();
     m_data[2] = m_ui->dateEditDateOut->text();
-    this->close();
 }
 

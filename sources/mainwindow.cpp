@@ -57,7 +57,8 @@ MainWindow::MainWindow( QWidget *parent )
     connect( m_langGroup, &QActionGroup::triggered, this, &MainWindow::languageChange );
 
     m_ui->recordsWidget->setAction();
-    emit m_ui->recordsWidget->displayRecordsSignal( m_patientsModel->record( 0 ).field( 0 ).value().toInt() );
+    //m_ui->recordsWidget->setCurrentID( 0 );
+    emit m_ui->recordsWidget->displayRecordsSignal();
 }
 
 MainWindow::~MainWindow()
@@ -74,7 +75,6 @@ void MainWindow::onAddPatient()
     dialogWnd.setModal(true);
     if( dialogWnd.exec() == QDialog::Accepted )
     {
-        //QVariant* data = dialogWnd.getData();
         QSqlRecord record( m_patientsModel->record() );
         record.setValue( 0, QVariant() );
         record.setValue( 1, dialogWnd.name() );
@@ -112,7 +112,10 @@ void MainWindow::onDisplayRecords()
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
     QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
-        emit m_ui->recordsWidget->displayRecordsSignal( id );
+    {
+        m_ui->recordsWidget->setCurrentID( id );
+        emit m_ui->recordsWidget->displayRecordsSignal();
+    }
 }
 
 void MainWindow::sortPatients( int index, Qt::SortOrder order )

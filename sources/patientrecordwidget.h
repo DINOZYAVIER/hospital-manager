@@ -18,19 +18,21 @@ public:
     ~PatientRecordWidget();
 
     void setAction();
+    void setCurrentID( QVariant id ) { m_current_id = id; }
     void openDB();
     void closeDB();
 Q_SIGNALS:
-    void displayRecordsSignal( QVariant id );
+    void displayRecordsSignal();
 
 private Q_SLOTS:
-    void onAddRecord( int id );
+    void onAddRecord();
     void onRemoveRecord();
-    void onDisplayRecords( QVariant id);
+    void onDisplayRecords();
     void onDisplayRadiographs();
 private:
     Ui::PatientRecordWidget *m_ui;
     QSqlRelationalTableModel *m_recordsModel;
+    QVariant m_current_id;
 };
 
 #endif // PATIENTRECORDWIDGET_H

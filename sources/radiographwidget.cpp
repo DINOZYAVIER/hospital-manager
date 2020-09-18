@@ -49,6 +49,7 @@ void RadiographWidget::onAddRadiograph()
         m_radiographsModel->select();
         qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();
     }
+    checkActions();
     onDisplay( m_current_radiograph );
 }
 

@@ -16,15 +16,15 @@ public:
     explicit AddRecordDialog(QWidget *parent = nullptr);
     ~AddRecordDialog();
 
-    QString description() { return m_data[0]; }
-    QString dateIn() { return m_data[1]; }
-    QString dateOut() { return m_data[2]; }
+    QString description() { return m_data[0].toString(); }
+    QString dateIn() { return m_data[1].toString(); }
+    QString dateOut() { return m_data[2].toString(); }
 private Q_SLOTS:
     void onTextChanged();
 
 private:
     Ui::AddRecordDialog *m_ui;
-    QString m_data[3];
+    QVariant m_data[3];
 
 };
 

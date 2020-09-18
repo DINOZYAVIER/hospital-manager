@@ -23,7 +23,7 @@ PatientRecordWidget::~PatientRecordWidget()
     delete m_ui;
 }
 
-void PatientRecordWidget::onAddRecord( int id )
+void PatientRecordWidget::onAddRecord()
 {
     qDebug() << "hello";
     AddRecordDialog dialogWnd;
@@ -31,12 +31,13 @@ void PatientRecordWidget::onAddRecord( int id )
     dialogWnd.setModal( true );
     if( dialogWnd.exec() == QDialog::Accepted )
     {
+        qDebug() << dialogWnd.description() << dialogWnd.dateIn() << dialogWnd.dateOut();
         QSqlRecord record( m_recordsModel->record() );
         record.setValue( 0, QVariant() );
         record.setValue( 1, dialogWnd.description() );
         record.setValue( 2, dialogWnd.dateIn() );
         record.setValue( 3, dialogWnd.dateOut() );
-        record.setValue( 4, id );
+        record.setValue( 4, m_current_id );
         m_recordsModel->insertRecord( -1, record );
         m_recordsModel->submitAll();
         m_recordsModel->select();
@@ -58,9 +59,9 @@ void PatientRecordWidget::onRemoveRecord()
     }
 }
 
-void PatientRecordWidget::onDisplayRecords( QVariant id )
+void PatientRecordWidget::onDisplayRecords()
 {
-    m_recordsModel->setFilter("PatientID='" + id.toString() + "'");
+    m_recordsModel->setFilter("PatientID='" + m_current_id.toString() + "'");
     m_ui->radiographsWidget->displayClear();
 }
 
