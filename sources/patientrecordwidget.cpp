@@ -61,6 +61,7 @@ void PatientRecordWidget::onRemoveRecord()
 
 void PatientRecordWidget::onDisplayRecords()
 {
+    m_ui->radiographsWidget->setCurrentID( m_current_id );
     m_recordsModel->setFilter("PatientID='" + m_current_id.toString() + "'");
     m_ui->radiographsWidget->displayClear();
 }
@@ -76,7 +77,8 @@ void PatientRecordWidget::onDisplayRadiographs()
         ActionStore::action( aAddRadiograph )->setEnabled( true );
         ActionStore::action( aRemoveRadiograph )->setEnabled( true );
 
-        emit m_ui->radiographsWidget->displayRadiographsSignal( id );
+        m_ui->radiographsWidget->setCurrentID( id );
+        emit m_ui->radiographsWidget->displayRadiographsSignal();
     }
 
     else

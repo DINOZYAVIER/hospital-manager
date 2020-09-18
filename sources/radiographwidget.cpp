@@ -27,7 +27,7 @@ RadiographWidget::~RadiographWidget()
 
 void RadiographWidget::onAddRadiograph()
 {
-    if( m_current_id >= 0 )
+    if( m_current_id.toInt() >= 0 )
     {
         ++m_current_radiograph;
         QString fileName = QFileDialog::getOpenFileName( this,
@@ -55,53 +55,58 @@ void RadiographWidget::onAddRadiograph()
 
 void RadiographWidget::onRemoveRadiograph()
 {
-    if( m_current_radiograph >= 0 && m_current_radiograph < m_radiographsModel->rowCount() )
+    if( m_current_radiograph >= 0 && m_current_radiograph < m_radiographsModel->rowCount() - 1 )
     {
         int id = m_radiographsModel->record( m_current_radiograph ).field( 0 ).value().toInt();
         m_radiographsModel->removeRow( m_current_radiograph );
         m_radiographsModel->submitAll();
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
-    }
+/*
+        if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )
+        {
+            qDebug() << m_radiographsModel->rowCount();
+            qDebug() << "if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )";
+            onDisplay( --m_current_radiograph );
+            checkActions();
+            return;
+        }
 
-    if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )
-    {
-        qDebug() << m_radiographsModel->rowCount();
-        qDebug() << "if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )";
-        onDisplay( m_current_radiograph - 1 );
-        return;
-    }
+        if( m_radiographsModel->rowCount() == 2 )
+        {
+            qDebug() << m_radiographsModel->rowCount();
+            qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() == 1 )";
+            displayClear();
+            checkActions();
+            return;
+        }
 
-    if( m_radiographsModel->rowCount() == 1 )
-    {
-        qDebug() << m_radiographsModel->rowCount();
-        qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() == 1 )";
+        if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )
+        {
+            qDebug() << m_radiographsModel->rowCount();
+            qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )";
+            onDisplay( ++m_current_radiograph );
+            checkActions();
+            return;
+        }
+
+        if( m_current_radiograph == m_radiographsModel->rowCount() )
+        {
+            qDebug() << m_radiographsModel->rowCount();
+            qDebug() << "if( m_current_radiograph == m_radiographsModel->rowCount() )";
+            onDisplay( --m_current_radiograph );
+            checkActions();
+            return;
+        }*/
+    }
         displayClear();
-        return;
-    }
-
-    if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )
-    {
-        qDebug() << m_radiographsModel->rowCount();
-        qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )";
-        onDisplay( m_current_radiograph + 1);
-        return;
-    }
-
-    if( m_current_radiograph == m_radiographsModel->rowCount() )
-    {
-        qDebug() << m_radiographsModel->rowCount();
-        qDebug() << "if( m_current_radiograph == m_radiographsModel->rowCount() )";
-        onDisplay( m_current_radiograph - 1 );
-        return;
-    }
 }
 
-void RadiographWidget::onDisplayRadiograph( QVariant id )
+void RadiographWidget::onDisplayRadiograph()
 {
-    m_current_id = id.toInt();
+    //m_ui->Radiograph->setTitle( "Radiographs" + QString::number( m_current_radiograph ) + '/' + QString::number( m_radiographsModel->rowCount() ));
     m_current_radiograph = 0;
-    m_radiographsModel->setFilter( "RecordID='" + id.toString() + "'");
+    m_radiographsModel->setFilter( "RecordID='" + m_current_id.toString() + "'");
 
 
     if( m_radiographsModel->rowCount() > 0)
