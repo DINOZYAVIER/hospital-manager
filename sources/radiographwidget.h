@@ -21,6 +21,7 @@ public:
     void setCurrentID( QVariant id ) { m_current_id = id.toInt(); }
     void displayClear();
     void checkActions();
+    void onDisplay( int current_radiograph );
 Q_SIGNALS:
     void displayRadiographsSignal( QVariant id );
     void recordClickedSignal( int id );

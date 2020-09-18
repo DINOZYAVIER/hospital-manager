@@ -19,10 +19,18 @@ MainWindow::MainWindow( QWidget *parent )
     ActionStore::addAction( aRemovePatient, m_ui->aRemovePatient) ;
     ActionStore::addAction( aAddRecord, m_ui->aAddRecord );
     ActionStore::addAction( aRemoveRecord, m_ui->aRemoveRecord );
-    ActionStore::addAction( aAddRadiograph, m_ui->aRemoveRadiograph );
+    ActionStore::addAction( aAddRadiograph, m_ui->aAddRadiograph );
     ActionStore::addAction( aRemoveRadiograph, m_ui->aRemoveRadiograph );
     ActionStore::addAction( aNextRadiograph, m_ui->aNextRadiograph );
     ActionStore::addAction( aPrevRadiograph, m_ui->aPrevRadiograph );
+
+    ActionStore::action( aAddRecord )->setEnabled( false );
+    ActionStore::action( aRemoveRecord )->setEnabled( false );
+    ActionStore::action( aAddRadiograph )->setEnabled( false );
+    ActionStore::action( aRemoveRadiograph )->setEnabled( false );
+    ActionStore::action( aNextRadiograph )->setEnabled( false );
+    ActionStore::action( aPrevRadiograph )->setEnabled( false );
+
 
     m_patientsModel = new QSqlTableModel( this );
     m_patientsModel->setTable( "Patients" );
@@ -91,6 +99,13 @@ void MainWindow::onRemovePatient()
 
 void MainWindow::onDisplayRecords()
 {
+    ActionStore::action( aAddRecord )->setEnabled( false );
+    ActionStore::action( aRemoveRecord )->setEnabled( false );
+    ActionStore::action( aAddRadiograph )->setEnabled( false );
+    ActionStore::action( aRemoveRadiograph )->setEnabled( false );
+    ActionStore::action( aNextRadiograph )->setEnabled( false );
+    ActionStore::action( aPrevRadiograph )->setEnabled( false );
+
     auto currentIndex = m_ui->patientTable->selectionModel()->currentIndex();
     QVariant id = m_patientsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )

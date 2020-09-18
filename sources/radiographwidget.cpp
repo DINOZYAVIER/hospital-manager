@@ -49,6 +49,7 @@ void RadiographWidget::onAddRadiograph()
         m_radiographsModel->select();
         qDebug() << "Added radiograph with ID:" << m_radiographsModel->record( m_radiographsModel->rowCount() - 1 ).field( 0 ).value().toInt();
     }
+    onDisplay( m_current_radiograph );
 }
 
 void RadiographWidget::onRemoveRadiograph()
@@ -60,7 +61,38 @@ void RadiographWidget::onRemoveRadiograph()
         m_radiographsModel->submitAll();
         m_radiographsModel->select();
         qDebug() << "Removed radiograph with ID:" << id;
+    }
+
+    if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )
+    {
+        qDebug() << m_radiographsModel->rowCount();
+        qDebug() << "if( m_current_radiograph > 0 && m_current_radiograph < m_radiographsModel->rowCount() )";
+        onDisplay( m_current_radiograph - 1 );
+        return;
+    }
+
+    if( m_radiographsModel->rowCount() == 1 )
+    {
+        qDebug() << m_radiographsModel->rowCount();
+        qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() == 1 )";
         displayClear();
+        return;
+    }
+
+    if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )
+    {
+        qDebug() << m_radiographsModel->rowCount();
+        qDebug() << "if( m_current_radiograph == 0 && m_radiographsModel->rowCount() > 1 )";
+        onDisplay( m_current_radiograph + 1);
+        return;
+    }
+
+    if( m_current_radiograph == m_radiographsModel->rowCount() )
+    {
+        qDebug() << m_radiographsModel->rowCount();
+        qDebug() << "if( m_current_radiograph == m_radiographsModel->rowCount() )";
+        onDisplay( m_current_radiograph - 1 );
+        return;
     }
 }
 
@@ -70,19 +102,10 @@ void RadiographWidget::onDisplayRadiograph( QVariant id )
     m_current_radiograph = 0;
     m_radiographsModel->setFilter( "RecordID='" + id.toString() + "'");
 
+
     if( m_radiographsModel->rowCount() > 0)
     {
-        m_ui->DateEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Date" ).value().toString() );
-        m_ui->DescriptionEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Description" ).value().toString() );
-
-        QByteArray data = m_radiographsModel->record( m_current_radiograph ).field( "Radiograph" ).value().toByteArray();
-
-        QPixmap mpixmap = QPixmap();
-        if( mpixmap.loadFromData( data ))
-        {
-            qDebug() << "Radiograph number" << m_current_radiograph << "with record ID:" << id.toInt();
-            m_ui->imageLabel->setPixmap(( mpixmap ));
-        }
+        onDisplay( m_current_radiograph );
     }
     else
         displayClear();
@@ -94,14 +117,7 @@ void RadiographWidget::onDisplayNext()
     if( m_current_radiograph >= 0 && m_current_radiograph < m_radiographsModel->rowCount() - 1 )
     {
         ++m_current_radiograph;
-        m_ui->DateEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Date" ).value().toString() );
-        m_ui->DescriptionEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Description" ).value().toString() );
-        QByteArray data = m_radiographsModel->record( m_current_radiograph ).field( "Radiograph" ).value().toByteArray();
-        QPixmap mpixmap = QPixmap();
-        if( mpixmap.loadFromData( data ))
-            m_ui->imageLabel->setPixmap(( mpixmap ));
-        else
-            m_ui->imageLabel->setPixmap(( QPixmap() ));
+        onDisplay( m_current_radiograph );
     }
     checkActions();
 }
@@ -111,14 +127,7 @@ void RadiographWidget::onDisplayPrev()
     if( m_current_radiograph > 0 )
     {
         --m_current_radiograph;
-        m_ui->DateEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Date" ).value().toString() );
-        m_ui->DescriptionEdit->setText( m_radiographsModel->record( m_current_radiograph ).field( "Description" ).value().toString() );
-        QByteArray data = m_radiographsModel->record( m_current_radiograph ).field( "Radiograph" ).value().toByteArray();
-        QPixmap mpixmap = QPixmap();
-        if( mpixmap.loadFromData( data ))
-            m_ui->imageLabel->setPixmap(( mpixmap ));
-        else
-            m_ui->imageLabel->setPixmap(( QPixmap() ));
+        onDisplay( m_current_radiograph );
     }
     checkActions();
 }
@@ -147,6 +156,7 @@ void RadiographWidget::displayClear()
 
 void RadiographWidget::setAction()
 {
+    connect( ActionStore::action( aAddRadiograph ), &QAction::triggered, this, &RadiographWidget::onAddRadiograph );
     connect( ActionStore::action( aRemoveRadiograph ), &QAction::triggered, this, &RadiographWidget::onRemoveRadiograph );
     connect( ActionStore::action( aNextRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayNext );
     connect( ActionStore::action( aPrevRadiograph ), &QAction::triggered, this, &RadiographWidget::onDisplayPrev );
@@ -162,4 +172,16 @@ void RadiographWidget::checkActions()
         ActionStore::action( aNextRadiograph )->setEnabled( false );
     else
         ActionStore::action( aNextRadiograph )->setEnabled( true );
+}
+
+void RadiographWidget::onDisplay( int current_radiograph)
+{
+    m_ui->DateEdit->setText( m_radiographsModel->record( current_radiograph ).field( "Date" ).value().toString() );
+    m_ui->DescriptionEdit->setText( m_radiographsModel->record( current_radiograph ).field( "Description" ).value().toString() );
+    QByteArray data = m_radiographsModel->record( current_radiograph ).field( "Radiograph" ).value().toByteArray();
+    QPixmap mpixmap = QPixmap();
+    if( mpixmap.loadFromData( data ))
+        m_ui->imageLabel->setPixmap(( mpixmap ));
+    else
+        m_ui->imageLabel->setPixmap(( QPixmap() ));
 }

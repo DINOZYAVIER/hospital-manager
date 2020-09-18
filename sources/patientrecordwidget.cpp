@@ -66,11 +66,27 @@ void PatientRecordWidget::onDisplayRecords( QVariant id )
 
 void PatientRecordWidget::onDisplayRadiographs()
 {
+
     qDebug() << "hello";
     auto currentIndex = m_ui->recordTable->selectionModel()->currentIndex();
     QVariant id = m_recordsModel->record( currentIndex.row() ).field( 0 ).value().toInt();
     if( currentIndex.isValid() )
+    {
+        ActionStore::action( aAddRecord )->setEnabled( true );
+        ActionStore::action( aRemoveRecord )->setEnabled( true );
+        ActionStore::action( aAddRadiograph )->setEnabled( true );
+        ActionStore::action( aRemoveRadiograph )->setEnabled( true );
+
         emit m_ui->radiographsWidget->displayRadiographsSignal( id );
+    }
+
+    else
+    {
+        ActionStore::action( aAddRecord )->setEnabled( false );
+        ActionStore::action( aRemoveRecord )->setEnabled( false );
+        ActionStore::action( aAddRadiograph )->setEnabled( false );
+        ActionStore::action( aRemoveRadiograph )->setEnabled( false );
+    }
 }
 
 void PatientRecordWidget::setAction()
