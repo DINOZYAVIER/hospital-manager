@@ -7,6 +7,7 @@
 /***** Add C++ includes here*****/
 // Qt
 #include <QApplication>
+#include <QMessageBox>
 #include <QTableView>
 #include <QSqlTableModel>
 #include <QSqlDatabase>

@@ -98,6 +98,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="aAbout"/>
+    <addaction name="aAboutQt"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -261,6 +263,16 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Left</string>
+   </property>
+  </action>
+  <action name="aAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="aAboutQt">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>

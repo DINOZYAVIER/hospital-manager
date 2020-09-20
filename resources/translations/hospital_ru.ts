@@ -5,54 +5,54 @@
     <name>AddPatientDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Диалог</translation>
     </message>
     <message>
         <source>Full name</source>
-        <translation type="unfinished"></translation>
+        <translation>Полное имя</translation>
     </message>
     <message>
         <source>Birthday</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата рождения</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <source>Submit</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтвердить</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
 </context>
 <context>
     <name>AddRecordDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Диалог</translation>
     </message>
     <message>
         <source>Submit</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтвердить</translation>
     </message>
     <message>
         <source>Date in</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата вписки</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Описание</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>Date out</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата выписки</translation>
     </message>
 </context>
 <context>
@@ -127,85 +127,109 @@
     </message>
     <message>
         <source>Display Records</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить записи</translation>
     </message>
     <message>
         <source>Add record</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить запись</translation>
     </message>
     <message>
         <source>Remove record</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить запись</translation>
     </message>
     <message>
         <source>Add radiograph</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить снимок</translation>
     </message>
     <message>
         <source>Remove radiograph</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить снимок</translation>
     </message>
     <message>
         <source>Display radiographs</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить снимки</translation>
     </message>
     <message>
         <source>Display everything</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить все</translation>
     </message>
     <message>
         <source>Displays all rows in record and radiograph tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Отобразить все</translation>
     </message>
     <message>
         <source>Next Radiograph</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующий снимок</translation>
     </message>
     <message>
         <source>Ctrl+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Right</translation>
     </message>
     <message>
         <source>Previous radiograph</source>
-        <translation type="unfinished"></translation>
+        <translation>Предыдущий снимок</translation>
     </message>
     <message>
         <source>Ctrl+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+left</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
+    </message>
+    <message>
+        <source>Open DB</source>
+        <translation>Открыть БД</translation>
+    </message>
+    <message>
+        <source>*db</source>
+        <translation>Закрыть БД</translation>
     </message>
 </context>
 <context>
     <name>PatientRecordWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>Patient&apos;s record</source>
+        <translation>Запись пациента</translation>
     </message>
 </context>
 <context>
     <name>RadiographWidget</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Описание</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата</translation>
     </message>
     <message>
         <source>Add radiograph</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить снимок</translation>
     </message>
     <message>
         <source>Open Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть изображение</translation>
     </message>
     <message>
         <source>Image Files (*.png *.jpg *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Image Files (*.png *.jpg *.bmp)</translation>
+    </message>
+    <message>
+        <source>Radiograph</source>
+        <translation>Снимок</translation>
     </message>
 </context>
 </TS>

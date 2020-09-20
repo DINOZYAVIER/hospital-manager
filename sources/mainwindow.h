@@ -34,6 +34,7 @@ private Q_SLOTS:
     void onOpenDB();
     void onCloseDB();
     void languageChange();
+    void onAboutQtClicked();
 
 private:
     Ui::MainWindow* m_ui;
