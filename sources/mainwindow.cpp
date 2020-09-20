@@ -42,7 +42,9 @@ MainWindow::MainWindow( QWidget *parent )
     connect( ActionStore::action( aAddPatient ), &QAction::triggered, this, &MainWindow::onAddPatient );
     connect( ActionStore::action( aRemovePatient ), &QAction::triggered, this, &MainWindow::onRemovePatient );
     connect( m_ui->patientTable, &QTableView::clicked, this, &MainWindow::onDisplayRecords );
+    connect( m_ui->aAbout, &QAction::triggered, this, &MainWindow::onAboutClicked );
     connect( m_ui->aAboutQt, &QAction::triggered, this, &MainWindow::onAboutQtClicked );
+
 
     //db sort
     auto* header = m_ui->patientTable->horizontalHeader();
@@ -198,6 +200,12 @@ void MainWindow::onCloseDB()
      ActionStore::action( aPrevRadiograph )->setEnabled( false );
      m_patientsModel->clear();
      m_ui->recordsWidget->closeDB();
+}
+
+void MainWindow::onAboutClicked()
+{
+    QMessageBox::about( this, "About the program",
+                              "Hospital Management Application \nTest assignment by Arthur Konovalov for NIX Solutions.");
 }
 
 void MainWindow::onAboutQtClicked()
