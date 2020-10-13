@@ -217,21 +217,37 @@
    </property>
   </action>
   <action name="aAddRecord">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/add_record.png</normaloff>:/icons/add_record.png</iconset>
+   </property>
    <property name="text">
     <string>Add record</string>
    </property>
   </action>
   <action name="aRemoveRecord">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/remove_record.png</normaloff>:/icons/remove_record.png</iconset>
+   </property>
    <property name="text">
     <string>Remove record</string>
    </property>
   </action>
   <action name="aAddRadiograph">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/add_radiograph.png</normaloff>:/icons/add_radiograph.png</iconset>
+   </property>
    <property name="text">
     <string>Add radiograph</string>
    </property>
   </action>
   <action name="aRemoveRadiograph">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/remove_radiograph.png</normaloff>:/icons/remove_radiograph.png</iconset>
+   </property>
    <property name="text">
     <string>Remove radiograph</string>
    </property>
@@ -250,6 +266,10 @@
    </property>
   </action>
   <action name="aNextRadiograph">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/next_radiograph.png</normaloff>:/icons/next_radiograph.png</iconset>
+   </property>
    <property name="text">
     <string>Next Radiograph</string>
    </property>
@@ -258,6 +278,10 @@
    </property>
   </action>
   <action name="aPrevRadiograph">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/previous_radiograph.png</normaloff>:/icons/previous_radiograph.png</iconset>
+   </property>
    <property name="text">
     <string>Previous radiograph</string>
    </property>

@@ -3,5 +3,11 @@
         <file>translations/hospital_ru.qm</file>
         <file>icons/add_patient.png</file>
         <file>icons/remove_patient.png</file>
+        <file>icons/add_radiograph.png</file>
+        <file>icons/add_record.png</file>
+        <file>icons/remove_radiograph.png</file>
+        <file>icons/remove_record.png</file>
+        <file>icons/next_radiograph.png</file>
+        <file>icons/previous_radiograph.png</file>
     </qresource>
 </RCC>
