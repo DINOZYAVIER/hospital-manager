@@ -1,2 +1,3 @@
-#Hospital Manager app
+# Hospital Manager app
+
 Test assingment for NIX Solutions made by Arthur Konovalov.
